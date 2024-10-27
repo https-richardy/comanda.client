@@ -1,0 +1,30 @@
+<div class="flex items-center justify-center mt-5">
+    <div class="relative w-full max-w-[75%]
+                sm:max-w-[50%] md:max-w-[75%]
+                lg:max-w-[500px]
+                transition-all duration-300 ease-in-out"
+        [ngClass]="isFocused ? 'scale-105' : 'scale-100'">
+
+        <input type="text" placeholder="Pesquisar..." class="
+                w-full py-3 pl-12 pr-4 text-gray-700 bg-white
+                border rounded-full outline-none 
+                transition-all duration-300 ease-in-out
+            " [ngClass]="
+                isFocused
+                ? 'border-primary ring-1 ring-primary'
+                : 'border-gray-300 hover:border-primary'
+            " (focus)="handleOnFocus()" (blur)="handleOnBlur()" />
+
+        <div class="absolute inset-y-0
+                    left-0 flex items-center
+                    pl-3 pointer-events-none">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-6 h-6 transition-colors duration-300"
+                [ngClass]="isFocused ? 'text-primary' : 'text-gray-400'">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-4.35-4.35M9 17a8 8 0 100-16 8 8 0 000 16z" />
+            </svg>
+        </div>
+    </div>
+</div>
