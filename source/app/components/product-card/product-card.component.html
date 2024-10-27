@@ -1,0 +1,46 @@
+<div class="w-full max-w-[380px] sm:max-w-sm
+            h-[100%]
+            border border-gray-200
+            rounded-lg overflow-hidden
+            shadow-md hover:shadow-lg
+            transition-shadow duration-300 mx-auto
+            flex flex-col justify-between">
+
+    <div class="relative">
+        <!-- product image -->
+        <img
+            [src]="product.image"
+            [alt]="product.title"
+            class="w-full h-full object-cover"
+        />
+
+        <!-- price badge -->
+        <div class="absolute top-2
+                    right-2 bg-primary
+                    text-white px-2
+                    py-1 rounded-full
+                    text-xs sm:text-sm font-bold">
+            {{ product.price | currency:'BRL':'symbol':'1.2-2' }}
+        </div>
+    </div>
+
+    <div class="p-3 sm:p-4">
+        <h2 class="text-lg sm:text-xl font-semibold mb-2 line-clamp-2">{{ product.title }}</h2>
+        <p class="text-gray-600 text-sm sm:text-base line-clamp-3">{{ product.description }}</p>
+    </div>
+
+    <!-- button container: fixed height -->
+    <div class="p-3 sm:p-4 flex-shrink-0">
+        <button class="w-full bg-primary
+                      text-white py-2
+                      px-4 rounded-lg
+                      hover:bg-primary-dark
+                      transition-colors duration-300
+                      focus:outline-none focus:ring-2
+                      focus:ring-primary focus:ring-opacity-50
+                      active:transform active:scale-[0.98]"
+                (click)="handleOnCartAddClick()">
+            Adicionar ao Carrinho
+        </button>
+    </div>
+</div>
