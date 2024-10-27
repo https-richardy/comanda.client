@@ -1,0 +1,6 @@
+<ng-container *ngIf="isAuthorized; else notAuthorized">
+    <ng-content select="authorized"></ng-content>
+</ng-container>
+<ng-template #notAuthorized>
+    <ng-content select="not-authorized"></ng-content>
+</ng-template>
