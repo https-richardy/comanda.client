@@ -15,7 +15,7 @@
                 : 'border-gray-300 hover:border-primary'"
             (focus)="handleOnFocus()" (blur)="handleOnBlur()"
             [(ngModel)]="searchTerm"
-            (keyup.enter)="performSearch()" />
+            (input)="performSearch()" />
 
         <div class="absolute inset-y-0
                     left-0 flex items-center
