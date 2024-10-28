@@ -1,0 +1,11 @@
+<a [routerLink]="link" class="flex items-center justify-between p-4 hover:bg-gray-50">
+    <div class="flex items-center space-x-3">
+        <svg class="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="currentColor">
+            <path [attr.d]="icon"></path>
+        </svg>
+        <span class="font-medium text-gray-700">{{ label }}</span>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+    </svg>
+</a>
