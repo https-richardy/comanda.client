@@ -29,4 +29,8 @@ export class ProductGalleryComponent implements OnInit {
             this.products = products;
         });
     }
+
+    public handleOnSearch(products: Product[]): void {
+        this.products = products;
+    }
 }
