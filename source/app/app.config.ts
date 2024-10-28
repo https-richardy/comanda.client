@@ -9,7 +9,7 @@ export class ApplicationConfigBuilder {
     public static build(): ApplicationConfig {
         return {
             providers: [
-                { provide: API_BASE_URL, useValue: "http://localhost:5168" },
+                { provide: API_BASE_URL, useValue: "http://localhost:5168/" },
 
                 provideZoneChangeDetection({ eventCoalescing: true }),
                 provideRouter(routes),
