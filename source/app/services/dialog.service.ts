@@ -11,15 +11,11 @@ export class DialogService {
 
     private readonly appRef: ApplicationRef;
     private readonly injector: Injector;
-    private readonly viewContainerRef: ViewContainerRef;
+    private viewContainerRef!: ViewContainerRef;
 
-    public constructor(
-        appRef: ApplicationRef,
-        injector: Injector,
-        viewContainerRef: ViewContainerRef) {
-            this.appRef = appRef;
-            this.injector = injector;
-            this.viewContainerRef = viewContainerRef;
+    public constructor(appRef: ApplicationRef, injector: Injector) {
+        this.appRef = appRef;
+        this.injector = injector;
     }
 
     public open(component: Type<any>, config: DialogConfiguration = {}): DialogRef {
@@ -58,6 +54,10 @@ export class DialogService {
             close: (result?: any) => this.close(result),
             afterClosed: () => this.closeSubject.asObservable()
         };
+    }
+
+    public setViewContainerRef(viewContainerRef: ViewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
     }
 
     private close(result?: any) {
