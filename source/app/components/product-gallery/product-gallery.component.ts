@@ -2,11 +2,16 @@ import { Component } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { SearchComponent } from "../search/search.component";
 
 @Component({
     selector: 'product-gallery',
     standalone: true,
-    imports: [ CommonModule, ProductCardComponent ],
+    imports: [
+        CommonModule,
+        ProductCardComponent,
+        SearchComponent
+    ],
     templateUrl: './product-gallery.component.html',
 })
 export class ProductGalleryComponent {
