@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MainLayoutComponent } from "../../layout/main-layout/main-layout.component";
 import { NavigationComponent } from "../../layout/navigation/navigation.component";
+import { ProfileActionComponent } from './components/profile-action/profile-action.component';
+import { ProfileActionIcons } from './components/profile-action/icons/profile-action.icons';
 
 @Component({
     selector: 'app-profile-page',
@@ -9,11 +11,13 @@ import { NavigationComponent } from "../../layout/navigation/navigation.componen
     imports: [
         CommonModule,
         MainLayoutComponent,
-        NavigationComponent
+        NavigationComponent,
+        ProfileActionComponent
     ],
     templateUrl: './profile-page.component.html',
 })
 export class ProfilePageComponent {
+    public icons = ProfileActionIcons;
     public user = {
         name: 'Richard Garcia',
         email: 'richard@garcia.com',
