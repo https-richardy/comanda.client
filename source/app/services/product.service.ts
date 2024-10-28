@@ -30,4 +30,21 @@ export class ProductService implements IProductService {
             })
         );
     }
+
+    public searchProducts(searchTerm: string): Observable<Product[]> {
+        var parameters: any = {  };
+        if (searchTerm) {
+            parameters.title = searchTerm
+        }
+
+        return this.httpClient.get<Response<Pagination<Product>>>(this.baseAddress, { params: parameters }).pipe(
+            map((response) => {
+                if (response.data && Array.isArray(response.data.results)) {
+                    return response.data.results;
+                }
+
+                return [];
+            })
+        )
+    }
 }
