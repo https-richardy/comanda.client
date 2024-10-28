@@ -2,16 +2,7 @@
     <div class="mx-auto max-w-2xl">
         <!-- main card -->
         <div class="mb-6 overflow-hidden rounded-lg bg-white shadow">
-            <div class="bg-primary p-6 text-white">
-                <div class="mb-4 flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                        <div>
-                            <h2 class="text-xl font-semibold">{{user.name}}</h2>
-                            <p class="text-sm opacity-80">{{user.email}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <profile-info [user]="user" />
 
             <!-- navigation links -->
             <nav class="divide-y divide-gray-200">
