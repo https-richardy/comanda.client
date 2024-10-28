@@ -31,7 +31,8 @@ export class SearchComponent {
     }
 
     public performSearch(): void {
-        console.log("Realizando pesquisa: ", this.searchTerm);
-        this.onSearch.emit([])
+        this.productService.searchProducts(this.searchTerm).subscribe((products) => {
+            this.onSearch.emit(products);
+        });
     }
 }
