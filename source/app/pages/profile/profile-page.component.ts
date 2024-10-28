@@ -1,11 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MainLayoutComponent } from "../../layout/main-layout/main-layout.component";
+import { NavigationComponent } from "../../layout/navigation/navigation.component";
 
 @Component({
     selector: 'app-profile-page',
     standalone: true,
-    imports: [CommonModule, MainLayoutComponent],
+    imports: [
+        CommonModule,
+        MainLayoutComponent,
+        NavigationComponent
+    ],
     templateUrl: './profile-page.component.html',
 })
 export class ProfilePageComponent {
