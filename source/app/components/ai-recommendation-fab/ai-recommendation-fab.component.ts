@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DialogService } from '../../services/dialog.service';
+import { RecommendationDialogComponent } from '../dialogs/recommendation-dialog/recommendation-dialog.component';
 
 @Component({
     selector: 'recommendation-fab',
@@ -7,7 +9,13 @@ import { Component } from '@angular/core';
     templateUrl: './ai-recommendation-fab.component.html',
 })
 export class AiRecommendationFabComponent {
+    private readonly dialogService: DialogService;
+
+    public constructor(dialogService: DialogService) {
+        this.dialogService = dialogService;
+    }
+
     public getRecommendation(): void {
-        console.log("Solicitando recomendação de produto por IA");
+        this.dialogService.open(RecommendationDialogComponent);
     }
 }
