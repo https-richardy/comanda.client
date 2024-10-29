@@ -14,7 +14,7 @@ export class DialogService {
         this.injector = injector;
     }
 
-    public open<T>(component: Type<T>, configuration: DialogConfiguration = { showCloseButton: true, closeOnBackdrop: true }): ComponentRef<T> {
+    public open<T extends object>(component: Type<T>, configuration: DialogConfiguration = { showCloseButton: true, closeOnBackdrop: true }): ComponentRef<T> {
         const dialogComponentRef = createComponent(DialogComponent, {
             environmentInjector: this.injector,
             hostElement: document.createElement('div')
@@ -27,6 +27,10 @@ export class DialogService {
             environmentInjector: this.injector,
             hostElement: document.createElement('div')
         });
+
+        if (configuration.data) {
+            Object.assign(contentComponentRef.instance, configuration.data);
+        }
 
         dialogComponentRef.instance.dialogContent.insert(contentComponentRef.hostView);
 
