@@ -1,0 +1,30 @@
+<div
+    class="w-full bg-white shadow-lg rounded-lg overflow-hidden mb-4 mt-4 transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95">
+    <div class="p-4 flex justify-between items-center">
+        <div class="flex flex-col">
+            <h3
+                class="text-lg font-semibold mb-4 bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
+                {{ ingredient.name }}</h3>
+            <p class="text-sm text-gray-600">
+                <strong class="text-sm-gray-600">Quantidade: {{ ingredient.standardQuantity }}</strong>
+            </p>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span [ngClass]="ingredient.isMandatory ? 'bg-gray-300 text-gray-600' : 'bg-green-500 text-white'"
+                class="text-xs px-2 py-1 rounded flex items-center">
+                <svg *ngIf="ingredient.isMandatory; else optionalIcon" class="w-4 h-4 mr-1" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+                <ng-template #optionalIcon>
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </ng-template>
+                {{ ingredient.isMandatory ? 'Obrigatório' : 'Opcional' }}
+            </span>
+        </div>
+    </div>
+</div>
