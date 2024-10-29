@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { DialogService } from '../../services/dialog.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { DialogService } from '../../services/dialog.service';
     providers: [DialogService],
     templateUrl: './dialog-provider.component.html',
 })
-export class DialogProviderComponent {
-    @ViewChild('dialogContainer', { read: ViewContainerRef, static: true })
+export class DialogProviderComponent implements AfterViewInit {
+    @ViewChild('dialogContainer', { read: ViewContainerRef })
     public dialogContainer!: ViewContainerRef;
     private readonly dialogService: DialogService;
 
