@@ -9,7 +9,7 @@ export class DialogService {
 
     private dialogComponentRef: ComponentRef<DialogComponent> | null = null;
 
-    constructor(applicationRef: ApplicationRef, injector: EnvironmentInjector) {
+    public constructor(applicationRef: ApplicationRef, injector: EnvironmentInjector) {
         this.applicationRef = applicationRef;
         this.injector = injector;
     }
