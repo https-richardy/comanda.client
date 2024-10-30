@@ -20,7 +20,7 @@ export class CartNavigationItemComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.cartService.getCart().subscribe(cart => {
+        this.cartService.getCartObservable().subscribe(cart => {
             this.badgeCount = cart.items.length;
         });
     }
