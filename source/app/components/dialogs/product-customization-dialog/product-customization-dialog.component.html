@@ -1,0 +1,30 @@
+<div *ngIf="product && product.ingredients" class="p-6">
+    <h2 class="text-lg font-semibold mb-4 bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">Customize seu lanche</h2>
+
+    <div>
+        <h3 class="font-semibold mb-4 text-gray-600">Deseja remover algum ingrediente?</h3>
+        <p class="text-gray-500 italic text-sm">Clique sobre o ingrediente que deseja remover.</p>
+        <div *ngFor="let ingredient of product.ingredients">
+            <ingredient [ingredient]="ingredient" (click)="handleRemoveIngredient(ingredient.id)" />
+        </div>
+    </div>
+
+    <div>
+        <h3 class="font-semibold mb-4 text-gray-600 mt-2">Que tal adicionar mais alguma coisa?</h3>
+        <div *ngFor="let additional of availableAdditionals">
+            <additional [additional]="additional" (quantityChange)="handleAddAdditional(additional, $event)" />
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h4 class="font-semibold text-lg bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">Total: R$ {{ totalPrice | number:'1.2-2' }}</h4>
+    </div>
+
+    <div class="flex justify-center mt-4">
+        <button
+            class="w-full max-w-xs bg-gradient-to-r from-primary to-orange-500 text-white font-semibold py-2 px-4 rounded-md hover:from-orange-500 hover:to-primary transition-all duration-300 ease-in-out shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            (click)="submitPersonalization()">
+            Confirmar
+        </button>
+    </div>
+</div>
