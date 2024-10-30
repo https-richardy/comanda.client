@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ICartService } from './interfaces/cart.service.interface';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, switchMap } from 'rxjs';
 import { Cart } from '../models/cart.model';
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from '../app.tokens';
@@ -13,9 +13,11 @@ import { InsertProductIntoCartRequest } from '../payloads/requests/cart-payloads
 export class CartService implements ICartService {
     private readonly httpClient: HttpClient;
     private readonly baseAddress: string = `${inject(API_BASE_URL)}api/cart`;
+    private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject<Cart>(new Cart());
 
     public constructor(httpClient: HttpClient) {
         this.httpClient = httpClient;
+        this.loadCart();
     }
 
     public getCart(): Observable<Cart> {
@@ -42,8 +44,10 @@ export class CartService implements ICartService {
         return this.httpClient.post<Response<undefined>>(`${this.baseAddress}/items`, item).pipe(
             switchMap((response) => {
                 if (response.isSuccess) {
-                    return this.getCart(); 
+                    this.loadCart();
+                    return of(this.cartSubject.value);
                 }
+
                 else {
                     return of(new Cart());
                 }
@@ -53,5 +57,15 @@ export class CartService implements ICartService {
                 return of(new Cart());
             })
         );
+    }
+
+    public getCartObservable(): Observable<Cart> {
+        return this.cartSubject.asObservable();
+    }
+
+    private loadCart() {
+        this.getCart().subscribe(cart => {
+            this.cartSubject.next(cart);
+        });
     }
 }
