@@ -1,0 +1,8 @@
+<a [routerLink]="route" routerLinkActive="active" class="flex flex-col items-center text-primary mt-2 relative">
+    <i class="bx bx-cart text-2xl"></i>
+    <span class="mt-1 text-sm">Carrinho</span>
+    <span *ngIf="badgeCount > 0"
+        class="absolute top-0 right-0 -mt-1 -mr-1 bg-primary text-white text-xs font-semibold px-2 rounded-full">
+        {{ badgeCount }}
+    </span>
+</a>
