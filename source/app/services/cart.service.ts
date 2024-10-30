@@ -1,12 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { ICartService } from './interfaces/cart.service.interface';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { Cart } from '../models/cart.model';
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from '../app.tokens';
 import { Response } from '../payloads/responses/response';
 import { CartResponse } from '../payloads/responses/cart-payloads/cartResponse';
 import { CartItem } from '../models/cart-item.model';
+import { InsertProductIntoCartRequest } from '../payloads/requests/cart-payloads/insertProductIntoCartRequest';
 
 @Injectable({ providedIn: 'root' })
 export class CartService implements ICartService {
@@ -33,6 +34,23 @@ export class CartService implements ICartService {
                 }
 
                 return cart;
+            })
+        );
+    }
+
+    public addItem(item: InsertProductIntoCartRequest): Observable<Cart> {
+        return this.httpClient.post<Response<undefined>>(`${this.baseAddress}/items`, item).pipe(
+            switchMap((response) => {
+                if (response.isSuccess) {
+                    return this.getCart(); 
+                }
+                else {
+                    return of(new Cart());
+                }
+            }),
+            catchError((error) => {
+                console.error('Erro ao adicionar item ao carrinho:', error);
+                return of(new Cart());
             })
         );
     }
