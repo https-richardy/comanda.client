@@ -31,7 +31,7 @@ export class CartService implements ICartService {
                         item.quantity
                     ));
                 }
-    
+
                 return cart;
             })
         );
