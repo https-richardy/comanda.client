@@ -6,15 +6,17 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from "../../layout/navigation/navigation.component";
 import { Cart } from '../../models/cart.model';
 import { CartHeaderComponent } from "./components/cart-header/cart-header.component";
+import { CartItemComponent } from "./components/cart-item/cart-item.component";
 
 @Component({
     selector: 'cart-page',
     standalone: true,
     imports: [
-        CommonModule,
-        NavigationComponent,
-        CartHeaderComponent
-    ],
+    CommonModule,
+    NavigationComponent,
+    CartHeaderComponent,
+    CartItemComponent
+],
     templateUrl: './cart-page.component.html'
 })
 export class CartPageComponent implements OnInit {
