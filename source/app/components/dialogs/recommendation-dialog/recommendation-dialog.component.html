@@ -1,6 +1,18 @@
 <div class="p-6 max-w-md mx-auto bg-background text-foreground">
-    <h2 class="text-lg font-semibold mb-4 bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">Recomendação</h2>
-    <p class="text-sm mb-6">{{ recommendation }}</p>
+    <h2 class="text-lg font-semibold mb-4 bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
+        Recomendação
+    </h2>
+
+    <ng-container *ngIf="isBusy; else recommendationContent">
+        <div class="flex items-center">
+            <div class="w-5 h-5 border-4 border-t-transparent border-primary rounded-full animate-spin mr-2"></div>
+            <p class="text-sm">Estamos analisando seu histórico de pedidos...</p>
+        </div>
+    </ng-container>
+
+    <ng-template #recommendationContent>
+        <p class="text-sm mb-6">{{ recommendation }}</p>
+    </ng-template>
 
     <hr class="my-4">
 
