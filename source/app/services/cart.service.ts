@@ -59,6 +59,27 @@ export class CartService implements ICartService {
         );
     }
 
+    public incrementItemQuantity(itemId: number): Observable<Cart> {
+        return this.httpClient
+            .post<Response<undefined>>(`${this.baseAddress}/items/${itemId}/increment`, {})
+            .pipe(
+                switchMap(response => {
+                    if (response.isSuccess) {
+                        this.loadCart();
+                        return of(this.cartSubject.value);
+                    }
+                    else {
+                        return of(new Cart());
+                    }
+                }),
+
+                catchError((error) => {
+                    console.error('Erro ao incrementar item do carrinho:', error);
+                    return of(new Cart());
+                })
+            )
+    }
+
     public getCartObservable(): Observable<Cart> {
         return this.cartSubject.asObservable();
     }
