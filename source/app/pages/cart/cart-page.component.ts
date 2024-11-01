@@ -5,11 +5,16 @@ import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from "../../layout/navigation/navigation.component";
 import { Cart } from '../../models/cart.model';
+import { CartHeaderComponent } from "./components/cart-header/cart-header.component";
 
 @Component({
     selector: 'cart-page',
     standalone: true,
-    imports: [CommonModule, NavigationComponent],
+    imports: [
+        CommonModule,
+        NavigationComponent,
+        CartHeaderComponent
+    ],
     templateUrl: './cart-page.component.html'
 })
 export class CartPageComponent implements OnInit {
