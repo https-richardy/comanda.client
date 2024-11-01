@@ -39,10 +39,6 @@ export class CartPageComponent implements OnInit {
             })
     }
 
-    public updateQuantity(id: number, change: number) {
-
-    }
-
     public removeItem(id: number) {
 
     }
