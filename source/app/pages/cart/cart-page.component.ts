@@ -4,6 +4,7 @@ import { CartItem } from '../../models/cart-item.model';
 import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from "../../layout/navigation/navigation.component";
+import { Cart } from '../../models/cart.model';
 
 @Component({
     selector: 'cart-page',
@@ -13,16 +14,17 @@ import { NavigationComponent } from "../../layout/navigation/navigation.componen
 })
 export class CartPageComponent implements OnInit {
     private readonly cartService: CartService;
+
     public items$!: Observable<CartItem[]>;
+    public cart$!: Observable<Cart>;
 
     public constructor(cartService: CartService) {
         this.cartService = cartService;
     }
 
     public ngOnInit(): void {
-        this.items$ = this.cartService.getCart().pipe(
-            map(cart => cart.items)
-          );
+        this.cart$ = this.cartService.getCart();
+        this.items$ = this.cart$.pipe(map(cart => cart.items));
     }
 
     public incrementItemQuantity(itemId: number) {
@@ -40,18 +42,14 @@ export class CartPageComponent implements OnInit {
     }
 
     public removeItem(id: number) {
-
-    }
-
-    public getTotal(items: CartItem[]): number {
-        return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+        this.cartService.removeItem(id)
+            .subscribe(() => {
+                this.refreshCart();
+            })
     }
 
     private refreshCart() {
-        this.items$ = this.cartService
-            .getCart()
-            .pipe(
-                map(cart => cart.items)
-            );
+        this.cart$ = this.cartService.getCart();
+        this.items$ = this.cart$.pipe(map(cart => cart.items));
     }
 }

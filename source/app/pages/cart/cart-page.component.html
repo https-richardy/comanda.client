@@ -12,7 +12,7 @@
         </div>
 
         <div class="border-t border-gray-200">
-            <ng-container *ngIf="items$ | async as items; else emptyCart">
+            <ng-container *ngIf="items$ | async as items;">
                 <div *ngFor="let item of items" class="px-4 py-5 sm:p-6 border-b border-gray-200">
                     <div class="flex items-center justify-between">
                         <div class="flex-1">
@@ -51,12 +51,12 @@
                 </div>
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex justify-between items-center">
-                        <span
-                            class="text-lg font-medium bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">Total
-                            do Carrinho:</span>
-                        <span
-                            class="text-2xl font-bold bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">{{
-                            getTotal(items) | currency:'BRL':'symbol':'1.2-2' }}</span>
+                        <span class="text-lg font-medium bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
+                            Total do Carrinho:
+                        </span>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
+                            {{ (cart$ | async)?.total | currency:'BRL':'symbol':'1.2-2' }}
+                        </span>
                     </div>
                     <button
                         class="mt-4 w-full bg-white border-2 border-primary text-primary rounded-md px-4 py-2 font-medium hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
@@ -67,11 +67,5 @@
         </div>
     </div>
 </div>
-
-<ng-template #emptyCart>
-    <div class="px-4 py-5 sm:px-6">
-        <p class="text-lg text-gray-700">Seu carrinho está vazio.</p>
-    </div>
-</ng-template>
 
 <navigation />
