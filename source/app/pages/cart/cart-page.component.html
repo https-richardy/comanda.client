@@ -1,0 +1,78 @@
+<div class="bg-white py-8 mx-4 pb-20">
+    <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+
+        <!-- cart header -->
+        <div class="px-4 py-5 sm:px-6">
+            <h1 class="text-2xl font-semibold
+                       bg-gradient-to-r from-primary
+                       to-orange-500 bg-clip-text
+                       text-transparent">
+                       Seu Carrinho
+            </h1>
+        </div>
+
+        <div class="border-t border-gray-200">
+            <ng-container *ngIf="items$ | async as items; else emptyCart">
+                <div *ngFor="let item of items" class="px-4 py-5 sm:p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h3
+                                class="text-lg font-medium bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
+                                {{ item.title }}</h3>
+                            <p class="mt-1 text-sm text-gray-500">R$ {{ item.price.toFixed(2) }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <button (click)="updateQuantity(item.id, -1)"
+                                class="p-1 rounded-full border border-primary text-primary hover:bg-red-100">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4">
+                                    </path>
+                                </svg>
+                            </button>
+                            <span class="mx-2 font-medium">{{ item.quantity }}</span>
+                            <button (click)="updateQuantity(item.id, 1)"
+                                class="p-1 rounded-full border border-red-500 text-red-500 hover:bg-red-100">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg>
+                            </button>
+                            <button (click)="removeItem(item.id)"
+                                class="ml-4 p-1 rounded-full border border-red-500 text-red-500 hover:bg-red-100">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 7l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="mt-2 text-sm font-medium text-gray-900">
+                        Total: R$ {{ (item.price * item.quantity).toFixed(2) }}
+                    </p>
+                </div>
+                <div class="px-4 py-5 sm:p-6">
+                    <div class="flex justify-between items-center">
+                        <span
+                            class="text-lg font-medium bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">Total
+                            do Carrinho:</span>
+                        <span
+                            class="text-2xl font-bold bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">{{
+                            getTotal(items) | currency:'BRL':'symbol':'1.2-2' }}</span>
+                    </div>
+                    <button
+                        class="mt-4 w-full bg-white border-2 border-primary text-primary rounded-md px-4 py-2 font-medium hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+                        Finalizar Compra
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #emptyCart>
+    <div class="px-4 py-5 sm:px-6">
+        <p class="text-lg text-gray-700">Seu carrinho está vazio.</p>
+    </div>
+</ng-template>
+
+<navigation />
