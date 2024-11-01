@@ -25,6 +25,13 @@ export class CartPageComponent implements OnInit {
           );
     }
 
+    public incrementItemQuantity(itemId: number) {
+        this.cartService.incrementItemQuantity(itemId)
+            .subscribe(() => {
+                this.refreshCart();
+            });
+    }
+
     public updateQuantity(id: number, change: number) {
 
     }
@@ -35,5 +42,13 @@ export class CartPageComponent implements OnInit {
 
     public getTotal(items: CartItem[]): number {
         return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    private refreshCart() {
+        this.items$ = this.cartService
+            .getCart()
+            .pipe(
+                map(cart => cart.items)
+            );
     }
 }
