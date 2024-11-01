@@ -5,5 +5,7 @@ import { InsertProductIntoCartRequest } from "../../payloads/requests/cart-paylo
 export interface ICartService {
     getCart(): Observable<Cart>;
     addItem(item: InsertProductIntoCartRequest): Observable<Cart>;
+
     incrementItemQuantity(itemId: number): Observable<Cart>;
+    decrementItemQuantity(itemId: number): Observable<Cart>;
 }
