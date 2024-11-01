@@ -32,6 +32,13 @@ export class CartPageComponent implements OnInit {
             });
     }
 
+    public decrementItemQuantity(itemId: number) {
+        this.cartService.decrementItemQuantity(itemId)
+            .subscribe(() => {
+                this.refreshCart();
+            })
+    }
+
     public updateQuantity(id: number, change: number) {
 
     }

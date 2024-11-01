@@ -22,7 +22,7 @@
                             <p class="mt-1 text-sm text-gray-500">R$ {{ item.price.toFixed(2) }}</p>
                         </div>
                         <div class="flex items-center">
-                            <button (click)="updateQuantity(item.id, -1)"
+                            <button (click)="decrementItemQuantity(item.id)"
                                 class="ml-4 p-1 text-primary transition-transform duration-150 active:scale-90">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                     width="24px" fill="currentColor">
