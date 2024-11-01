@@ -101,6 +101,22 @@ export class CartService implements ICartService {
             )
     }
 
+    public removeItem(itemId: number): Observable<Cart> {
+        return this.httpClient
+            .delete<Response<undefined>>(`${this.baseAddress}/items/${itemId}`)
+            .pipe(
+                switchMap(response => {
+                    if (response.isSuccess) {
+                        this.loadCart();
+                        return of(this.cartSubject.value);
+                    }
+                    else {
+                        return of(new Cart());
+                    }
+                })
+            )
+    }
+
     public getCartObservable(): Observable<Cart> {
         return this.cartSubject.asObservable();
     }
