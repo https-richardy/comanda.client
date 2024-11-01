@@ -80,6 +80,27 @@ export class CartService implements ICartService {
             )
     }
 
+    public decrementItemQuantity(itemId: number): Observable<Cart> {
+        return this.httpClient
+            .post<Response<undefined>>(`${this.baseAddress}/items/${itemId}/decrement`, {})
+            .pipe(
+                switchMap(response => {
+                    if (response.isSuccess) {
+                        this.loadCart();
+                        return of(this.cartSubject.value);
+                    }
+                    else {
+                        return of(new Cart());
+                    }
+                }),
+
+                catchError((error) => {
+                    console.error('Erro ao decrementar item do carrinho:', error);
+                    return of(new Cart());
+                })
+            )
+    }
+
     public getCartObservable(): Observable<Cart> {
         return this.cartSubject.asObservable();
     }
