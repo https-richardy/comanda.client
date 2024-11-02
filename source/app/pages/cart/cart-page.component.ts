@@ -9,8 +9,9 @@ import { CartHeaderComponent } from "./components/cart-header/cart-header.compon
 import { CartItemComponent } from "./components/cart-item/cart-item.component";
 import { DialogService } from '../../services/dialog.service';
 import { AddressSelectionDialogComponent } from '../../components/dialogs/address-selection-dialog/address-selection-dialog.component';
-import { Router } from '@angular/router';
 import { CheckoutService } from '../../services/checkout.service';
+import { LoadingComponent } from "../../components/loading/loading.component";
+import { LoadingModalService } from '../../services/loading.service';
 
 @Component({
     selector: 'cart-page',
@@ -19,7 +20,8 @@ import { CheckoutService } from '../../services/checkout.service';
     CommonModule,
     NavigationComponent,
     CartHeaderComponent,
-    CartItemComponent
+    CartItemComponent,
+    LoadingComponent
 ],
     templateUrl: './cart-page.component.html'
 })
@@ -27,21 +29,22 @@ export class CartPageComponent implements OnInit {
     private readonly cartService: CartService;
     private readonly dialogService: DialogService;
     private readonly checkoutService: CheckoutService
-    private readonly router: Router;
+    private readonly loadingModalService: LoadingModalService
 
     public items$!: Observable<CartItem[]>;
     public cart$!: Observable<Cart>;
+    public isLoading: boolean = false;
 
     public constructor(
         cartService: CartService,
         dialogService: DialogService,
         checkoutService: CheckoutService,
-        router: Router
+        loadingModalService: LoadingModalService
     ) {
         this.cartService = cartService;
         this.dialogService = dialogService;
         this.checkoutService = checkoutService;
-        this.router = router;
+        this.loadingModalService = loadingModalService;
     }
 
     public ngOnInit(): void {
@@ -74,10 +77,17 @@ export class CartPageComponent implements OnInit {
         var checkoutDialog = this.dialogService.open(AddressSelectionDialogComponent);
         checkoutDialog.instance.onSelect.subscribe((address) => {
             this.dialogService.close();
+            this.isLoading = true;
+            this.loadingModalService.show("Finalizando o pedido...");
+
             this.checkoutService.getCheckoutSession(address).subscribe((session) => {
                 if (session.url) {
+                    this.loadingModalService.hide();
                     window.location.href = session.url;
                 }
+            }, () => {
+                this.isLoading = false;
+                this.loadingModalService.hide();
             })
         })
     }
