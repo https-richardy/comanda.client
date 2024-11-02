@@ -9,6 +9,8 @@ import { CartHeaderComponent } from "./components/cart-header/cart-header.compon
 import { CartItemComponent } from "./components/cart-item/cart-item.component";
 import { DialogService } from '../../services/dialog.service';
 import { AddressSelectionDialogComponent } from '../../components/dialogs/address-selection-dialog/address-selection-dialog.component';
+import { Router } from '@angular/router';
+import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
     selector: 'cart-page',
@@ -24,13 +26,22 @@ import { AddressSelectionDialogComponent } from '../../components/dialogs/addres
 export class CartPageComponent implements OnInit {
     private readonly cartService: CartService;
     private readonly dialogService: DialogService;
+    private readonly checkoutService: CheckoutService
+    private readonly router: Router;
 
     public items$!: Observable<CartItem[]>;
     public cart$!: Observable<Cart>;
 
-    public constructor(cartService: CartService, dialogService: DialogService) {
+    public constructor(
+        cartService: CartService,
+        dialogService: DialogService,
+        checkoutService: CheckoutService,
+        router: Router
+    ) {
         this.cartService = cartService;
         this.dialogService = dialogService;
+        this.checkoutService = checkoutService;
+        this.router = router;
     }
 
     public ngOnInit(): void {
@@ -60,7 +71,15 @@ export class CartPageComponent implements OnInit {
     }
 
     public openCheckoutDialog() {
-        this.dialogService.open(AddressSelectionDialogComponent);
+        var checkoutDialog = this.dialogService.open(AddressSelectionDialogComponent);
+        checkoutDialog.instance.onSelect.subscribe((address) => {
+            this.dialogService.close();
+            this.checkoutService.getCheckoutSession(address).subscribe((session) => {
+                if (session.url) {
+                    window.location.href = session.url;
+                }
+            })
+        })
     }
 
     private refreshCart() {
