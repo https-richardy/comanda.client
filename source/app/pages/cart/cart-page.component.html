@@ -34,7 +34,9 @@
                                    focus:outline-none
                                    transition-colors
                                    transition-transform
-                                   duration-150 active:scale-90"
+                                   duration-150 active:scale-90
+                                   disabled:opacity-50 disabled:cursor-not-allowed"
+                            [disabled]="(cart$ | async)?.items?.length === 0"
                             (click)="openCheckoutDialog()">
                         Finalizar Compra
                     </button>
