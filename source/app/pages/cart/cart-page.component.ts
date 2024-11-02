@@ -7,6 +7,8 @@ import { NavigationComponent } from "../../layout/navigation/navigation.componen
 import { Cart } from '../../models/cart.model';
 import { CartHeaderComponent } from "./components/cart-header/cart-header.component";
 import { CartItemComponent } from "./components/cart-item/cart-item.component";
+import { DialogService } from '../../services/dialog.service';
+import { AddressSelectionDialogComponent } from '../../components/dialogs/address-selection-dialog/address-selection-dialog.component';
 
 @Component({
     selector: 'cart-page',
@@ -21,12 +23,14 @@ import { CartItemComponent } from "./components/cart-item/cart-item.component";
 })
 export class CartPageComponent implements OnInit {
     private readonly cartService: CartService;
+    private readonly dialogService: DialogService;
 
     public items$!: Observable<CartItem[]>;
     public cart$!: Observable<Cart>;
 
-    public constructor(cartService: CartService) {
+    public constructor(cartService: CartService, dialogService: DialogService) {
         this.cartService = cartService;
+        this.dialogService = dialogService;
     }
 
     public ngOnInit(): void {
@@ -53,6 +57,10 @@ export class CartPageComponent implements OnInit {
             .subscribe(() => {
                 this.refreshCart();
             })
+    }
+
+    public openCheckoutDialog() {
+        this.dialogService.open(AddressSelectionDialogComponent);
     }
 
     private refreshCart() {
