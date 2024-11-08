@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { API_BASE_URL } from '../app.tokens';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { CheckoutSession } from '../payloads/responses/checkout-payloads/checkoutSession';
 import { Response } from '../payloads/responses/response';
@@ -22,5 +22,13 @@ export class CheckoutService {
                 map((response: Response<CheckoutSession>) => {
                     return response.data as CheckoutSession;
             }));
+    }
+
+    public handleSuccessfulPayment(sessionId: string): Observable<any> {
+        var endpoint = `${this.baseAddress}/success`;
+        var httpParams = new HttpParams();
+        var params = httpParams.set('sessionId', sessionId);
+
+        return this.httpClient.get(endpoint, { params });
     }
 }
