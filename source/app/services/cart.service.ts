@@ -126,4 +126,8 @@ export class CartService implements ICartService {
             this.cartSubject.next(cart);
         });
     }
+
+    public clearCart(): void {
+        this.cartSubject.next(new Cart());
+    }
 }
