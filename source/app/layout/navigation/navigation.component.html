@@ -1,8 +1,26 @@
-<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
-    <div class="flex justify-around h-16">
-        <navigation-item route="/" label="Home" icon="bx bx-home" />
-        <navigation-item route="/orders" label="Pedidos" icon="bx bx-receipt" />
-        <cart-navigation-item />
-        <navigation-item route="/profile" label="Perfil" icon="bx bx-user" />
-    </div>
-</nav>
+<!-- Customer navigation bar -->
+<authorize-view [roles]="['Customer']">
+    <authorized>
+        <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+            <div class="flex justify-around h-16">
+                <navigation-item route="/" label="Home" icon="bx bx-home" />
+                <navigation-item route="/orders" label="Pedidos" icon="bx bx-receipt" />
+                <cart-navigation-item />
+                <navigation-item route="/profile" label="Perfil" icon="bx bx-user" />
+            </div>
+        </nav>
+    </authorized>
+</authorize-view>
+
+
+<!-- Administrator navigation bar -->
+<authorize-view [roles]="['Administrator']">
+    <authorized>
+        <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+            <div class="flex justify-around h-16">
+                <navigation-item route="/" label="Home" icon="bx bx-home" />
+                <navigation-item route="/orders" label="Pedidos" icon="bx bx-receipt" />
+            </div>
+        </nav>
+    </authorized>
+</authorize-view>
