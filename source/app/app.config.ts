@@ -5,6 +5,8 @@ import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { API_BASE_URL } from './app.tokens';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { AuthenticationStateProvider } from './modules/authorization/authenticationStateProvider';
+import { JwtAuthenticationStateProvider } from './modules/authorization/services/jwt-authentication-state-provider.service';
 
 export class ApplicationConfigBuilder {
     public static build(): ApplicationConfig {
@@ -12,6 +14,7 @@ export class ApplicationConfigBuilder {
             providers: [
                 { provide: API_BASE_URL, useValue: "http://localhost:5168/" },
                 { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+                { provide: AuthenticationStateProvider, useClass: JwtAuthenticationStateProvider },
 
                 provideZoneChangeDetection({ eventCoalescing: true }),
                 provideRouter(routes),
