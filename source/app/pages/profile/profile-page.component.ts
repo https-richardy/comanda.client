@@ -30,9 +30,9 @@ export class ProfilePageComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        const storedUser = localStorage.getItem("profile.information");
-        if (storedUser) {
-            this.user = JSON.parse(storedUser);
+        const storedUserInformation = localStorage.getItem("profile.information");
+        if (storedUserInformation) {
+            this.user = JSON.parse(storedUserInformation);
         }
 
         else {
