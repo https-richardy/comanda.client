@@ -7,6 +7,8 @@ import { ProfileActionIcons } from './components/profile-action/profile-action.i
 import { ProfileInfoComponent } from "./components/profile-info/profile-info.component";
 import { ProfileInformation } from '../../payloads/responses/identity-payloads/profileInformation';
 import { ProfileService } from '../../services/profile.service';
+import { DialogService } from '../../services/dialog.service';
+import { LogoutConfirmationDialogComponent } from '../../components/dialogs/logout-confirmation-dialog/logout-confirmation-dialog.component';
 
 @Component({
     selector: 'app-profile-page',
@@ -21,12 +23,14 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class ProfilePageComponent implements OnInit {
     private readonly profileService: ProfileService;
+    private readonly dialogService: DialogService;
 
     public icons = ProfileActionIcons;
     public user: ProfileInformation = {  } as ProfileInformation;
 
-    public constructor(profileService: ProfileService) {
+    public constructor(profileService: ProfileService, dialogService: DialogService) {
         this.profileService = profileService;
+        this.dialogService = dialogService;
     }
 
     public ngOnInit(): void {
@@ -42,5 +46,21 @@ export class ProfilePageComponent implements OnInit {
                     localStorage.setItem("profile.information", JSON.stringify(user));
                 });
         }
+    }
+
+    public logout(): void {
+        const dialogRef = this.dialogService.open(LogoutConfirmationDialogComponent);
+        dialogRef.instance.onConfirm.subscribe(() => {
+            this.dialogService.close();
+
+            localStorage.removeItem("authenticationToken");
+            localStorage.removeItem("profile.information");
+
+            window.location.reload();
+        });
+
+        dialogRef.instance.onClosed.subscribe(() => {
+            this.dialogService.close();
+        });
     }
 }

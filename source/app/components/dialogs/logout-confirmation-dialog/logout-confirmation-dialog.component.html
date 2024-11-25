@@ -1,0 +1,40 @@
+<div class="p-4">
+    <div class="border-b border-gray-200 p-4">
+        <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5" />
+            </svg>
+            <h2 class="text-xl font-semibold">Confirmar Logout</h2>
+        </div>
+        <p class="text-gray-500">Você tem certeza que deseja sair?</p>
+    </div>
+
+    <div class="p-4">
+        <p class="text-sm text-gray-500 mb-4">
+            Ao fazer logout, você será desconectado da sua conta. Você pode logar novamente mais tarde.
+        </p>
+        <div class="flex gap-3">
+            <!-- Botão para confirmar logout -->
+            <button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark"
+                (click)="confirmLogout()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7l-7 7-7-7" />
+                </svg>
+                Confirmar Logout
+            </button>
+
+            <!-- Botão para cancelar logout -->
+            <button
+                class="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-100"
+                (click)="cancelLogout()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Cancelar
+            </button>
+        </div>
+    </div>
+</div>
