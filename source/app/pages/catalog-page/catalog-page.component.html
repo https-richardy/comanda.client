@@ -1,26 +1,24 @@
 <main-layout>
-
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        <div class="card bg-primary hover:bg-primary-dark cursor-pointer p-4 rounded-md shadow-md">
-            <i class="bx bx-cube text-3xl text-yellow-500"></i>
-            <h3 class="text-lg text-white font-semibold mt-2">Gerenciar Produtos</h3>
-            <p class="text-sm text-white">Adicione, edite ou remova produtos do menu.</p>
-        </div>
-        <div class="card bg-primary hover:bg-primary-dark cursor-pointer p-4 rounded-md shadow-md">
-            <i class="bx bx-lemon text-3xl text-yellow-500"></i>
-            <h3 class="text-lg text-white font-semibold mt-2">Gerenciar Ingredientes</h3>
-            <p class="text-sm text-white">Organize os ingredientes disponíveis.</p>
-        </div>
-        <div class="card bg-primary hover:bg-primary-dark cursor-pointer p-4 rounded-md shadow-md" >
-            <i class="bx bx-category text-3xl text-yellow-500"></i>
-            <h3 class="text-lg text-white font-semibold mt-2">Gerenciar Categorias</h3>
-            <p class="text-sm text-white">Agrupe os produtos em categorias.</p>
-        </div>
-        <div class="card bg-primary hover:bg-primary-dark cursor-pointer p-4 rounded-md shadow-md">
-            <i class="bx bx-plus text-3xl text-yellow-500"></i>
-            <h3 class="text-lg text-white font-semibold mt-2">Gerenciar Adicionais</h3>
-            <p class="text-sm text-white">Adicione opções extras para os produtos.</p>
-        </div>
-    </div>
+        <catalog-management-card
+            iconClass="bx bx-lemon"
+            title="Gerenciar Ingredientes"
+            description="Organize os ingredientes disponíveis."
+            navigateTo="catalog/products">
+        </catalog-management-card>
 
+        <catalog-management-card
+            iconClass="bx bx-category"
+            title="Gerenciar Categorias"
+            description="Agrupe os produtos em categorias."
+            navigateTo="catalog/categories">
+        </catalog-management-card>
+
+        <catalog-management-card
+            iconClass="bx bx-plus"
+            title="Gerenciar Adicionais"
+            description="Adicione opções extras para os produtos."
+            navigateTo="catalog/additional">
+        </catalog-management-card>
+    </div>
 </main-layout>
