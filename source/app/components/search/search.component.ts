@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { FormsModule } from '@angular/forms';
+import { Icons } from '../../common/enums/icons.enum';
 
 @Component({
     selector: 'search',
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class SearchComponent {
     public searchTerm: string = "";
     public isFocused: boolean = false;
+    public icons = Icons;
 
     private readonly productService: ProductService;
     @Output() public onSearch = new EventEmitter<Product[]>();

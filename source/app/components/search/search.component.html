@@ -20,13 +20,11 @@
         <div class="absolute inset-y-0
                     left-0 flex items-center
                     pl-3 pointer-events-none">
-
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                stroke="currentColor" class="w-6 h-6 transition-colors duration-300"
+            <span
+                class="material-symbols-outlined w-6 h-6 transition-colors duration-300"
                 [ngClass]="isFocused ? 'text-primary' : 'text-gray-400'">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M21 21l-4.35-4.35M9 17a8 8 0 100-16 8 8 0 000 16z" />
-            </svg>
+                {{ icons.Search }}
+            </span>
         </div>
     </div>
 </div>
