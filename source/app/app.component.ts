@@ -7,6 +7,7 @@ import { AuthenticationCredentials } from './payloads/requests/identity-payloads
 import { API_BASE_URL } from './app.tokens';
 import { Response } from './payloads/responses/response';
 import { AuthenticationResponse } from './payloads/responses/identity-payloads/authenticationResponse';
+import { StorageConstants } from './common/storage-constants';
 
 @Component({
     selector: 'app-root',
@@ -26,7 +27,7 @@ export class AppComponent {
     }
 
     public ngOnInit(): void {
-        const authenticated = localStorage.getItem("authenticationToken");
+        const authenticated = localStorage.getItem(StorageConstants.AuthenticationToken);
 
         if (!authenticated) {
             const dialogRef = this.dialogService.open(DevelopmentModeDialogComponent);
@@ -38,7 +39,7 @@ export class AppComponent {
                         .post<Response<AuthenticationResponse>>(`${this.baseAddress}/authenticate`, credentials)
                         .subscribe((response) => {
                             if (response.isSuccess && response.data) {
-                                localStorage.setItem('authenticationToken', response.data.token);
+                                localStorage.setItem(StorageConstants.AuthenticationToken, response.data.token);
                             }
                         });
                 }

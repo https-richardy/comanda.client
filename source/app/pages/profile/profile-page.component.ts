@@ -9,6 +9,7 @@ import { ProfileInformation } from '../../payloads/responses/identity-payloads/p
 import { ProfileService } from '../../services/profile.service';
 import { DialogService } from '../../services/dialog.service';
 import { LogoutConfirmationDialogComponent } from '../../components/dialogs/logout-confirmation-dialog/logout-confirmation-dialog.component';
+import { StorageConstants } from '../../common/storage-constants';
 
 @Component({
     selector: 'app-profile-page',
@@ -53,8 +54,8 @@ export class ProfilePageComponent implements OnInit {
         dialogRef.instance.onConfirm.subscribe(() => {
             this.dialogService.close();
 
-            localStorage.removeItem("authenticationToken");
-            localStorage.removeItem("profile.information");
+            localStorage.removeItem(StorageConstants.AuthenticationToken);
+            localStorage.removeItem(StorageConstants.ProfileInformation);
 
             window.location.reload();
         });

@@ -3,6 +3,7 @@ import { AuthenticationStateProvider } from '../authenticationStateProvider';
 import { AuthenticationState } from '../authenticationState';
 import { JwtTokenHandler } from './jwt-token-handler.service';
 import { ClaimsIdentity } from '../claimsIdentity';
+import { StorageConstants } from '../../../common/storage-constants';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class JwtAuthenticationStateProvider extends AuthenticationStateProvider 
     }
 
     public override getAuthenticationState(): AuthenticationState {
-        var token = localStorage.getItem("authenticationToken");
+        var token = localStorage.getItem(StorageConstants.AuthenticationToken);
         if (!token) {
             return new AuthenticationState(null);
         }
