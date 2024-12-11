@@ -1,12 +1,9 @@
 <div class="w-full max-w-md bg-primary text-white shadow-lg rounded-lg p-4" (click)="handleClick()">
     <div class="pb-2">
         <h2 class="flex items-center text-2xl font-bold">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 2a10 10 0 00-10 10c0 6.627 10 10 10 10s10-3.373 10-10A10 10 0 0012 2z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6h6" />
-            </svg>
+            <span class="material-symbols-outlined mr-2 h-6 w-6">
+                {{ icons.LocationOn }}
+            </span>
             {{ address.street }} - {{ address.postalCode }}
         </h2>
     </div>
