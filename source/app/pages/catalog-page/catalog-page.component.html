@@ -1,10 +1,17 @@
 <main-layout>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         <catalog-management-card
+            iconClass="bx bx-cube"
+            title="Gerenciar Produtos"
+            description="Administre os produtos disponíveis em seu catálogo."
+            navigateTo="catalog/product">
+        </catalog-management-card>
+
+        <catalog-management-card
             iconClass="bx bx-lemon"
             title="Gerenciar Ingredientes"
             description="Organize os ingredientes disponíveis."
-            navigateTo="catalog/products">
+            navigateTo="catalog/ingredientes">
         </catalog-management-card>
 
         <catalog-management-card
