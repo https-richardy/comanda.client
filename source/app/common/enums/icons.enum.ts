@@ -1,3 +1,4 @@
 export enum Icons {
-    Search = "search"
+    Search = "search",
+    ViewCozy = "view_cozy"
 }
