@@ -15,10 +15,10 @@ import { StorageConstants } from '../../common/storage-constants';
     selector: 'app-profile-page',
     standalone: true,
     imports: [
-    CommonModule,
-    NavigationComponent,
-    ProfileActionComponent,
-    ProfileInfoComponent
+        CommonModule,
+        NavigationComponent,
+        ProfileActionComponent,
+        ProfileInfoComponent
 ],
     templateUrl: './profile-page.component.html',
 })
@@ -35,7 +35,7 @@ export class ProfilePageComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        const storedUserInformation = localStorage.getItem("profile.information");
+        const storedUserInformation = localStorage.getItem(StorageConstants.ProfileInformation);
         if (storedUserInformation) {
             this.user = JSON.parse(storedUserInformation);
         }
@@ -44,7 +44,7 @@ export class ProfilePageComponent implements OnInit {
             this.profileService.getProfileInformation()
                 .subscribe((user) => {
                     this.user = user;
-                    localStorage.setItem("profile.information", JSON.stringify(user));
+                    localStorage.setItem(StorageConstants.ProfileInformation, JSON.stringify(user));
                 });
         }
     }
