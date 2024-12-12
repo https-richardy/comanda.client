@@ -20,6 +20,6 @@ export class CatalogManagementCardComponent {
     }
 
     public handleOnClick(): void {
-        this.routeHelper.navigate([this.navigateTo]);
+        this.routeHelper.navigateByUrl(this.navigateTo);
     }
 }
