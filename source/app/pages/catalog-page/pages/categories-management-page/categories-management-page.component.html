@@ -1,0 +1,44 @@
+<main-layout>
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-semibold
+                       bg-gradient-to-r from-primary
+                       to-orange-500 bg-clip-text
+                       text-transparent">
+                Gerenciamento de Categorias.
+            </h1>
+            <button (click)="openDialog()" class="bg-primary text-white
+                                                  px-4 py-2
+                                                  rounded-md
+                                                  hover:bg-opacity-90
+                                                  transition-colors
+                                                  flex items-center">
+                <span class="material-symbols-outlined w-5 h-5 mr-2">
+                    {{ icons.Add }}
+                </span>
+                    Adicionar categoria
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div *ngFor="let category of categories"
+                class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+                <h2 class="text-xl font-semibold mb-4 text-gray-700">{{ category.name }}</h2>
+                <div class="flex justify-end space-x-2">
+                    <button (click)="openDialog(category)" class="text-blue-600 hover:text-blue-800">
+                        <span class="material-symbols-outlined w-5 h-5 mr-2 text-blue-600">
+                            {{ icons.Edit }}
+                        </span>
+                    </button>
+
+                    <button (click)="handleDelete(category.id)" class="text-red-600 hover:text-red-800">
+                        <span class="material-symbols-outlined w-5 h-5 text-red-600">
+                            {{ icons.Delete }}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main-layout>
