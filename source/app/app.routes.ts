@@ -5,19 +5,13 @@ import { HomePageComponent } from './pages/home/home.component';
 import { CartPageComponent } from './pages/cart/cart-page.component';
 import { SuccessPageComponent } from './pages/checkout/success/success.component';
 import { CatalogPageComponent } from './pages/catalog-page/catalog-page.component';
+import { CategoriesManagementPageComponent } from './pages/catalog-page/pages/categories-management-page/categories-management-page.component';
 
 export const routes: Routes = [
-    /* register independent routes (standalone pages) here */
     { path: "", component: HomePageComponent },
     { path: "profile", component: ProfilePageComponent },
     { path: "cart", component: CartPageComponent },
-
-    /* register nested routes (with children) here */
-    {
-        path: "checkout",
-        children: [
-            { path: "success", component: SuccessPageComponent }
-        ]
-    },
-    { path: "catalog", component: CatalogPageComponent } /* TODO: add catalog child routes */
+    { path: "checkout/sucess", component: SuccessPageComponent },
+    { path: "catalog", component: CatalogPageComponent },
+    { path: "catalog/categories", component: CategoriesManagementPageComponent },
 ];
