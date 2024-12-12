@@ -7,7 +7,7 @@ import { CatalogManagementCardComponent } from "./components/catalog-management-
     standalone: true,
     imports: [
         MainLayoutComponent,
-        CatalogManagementCardComponent
+        CatalogManagementCardComponent,
     ],
     templateUrl: './catalog-page.component.html'
 })
