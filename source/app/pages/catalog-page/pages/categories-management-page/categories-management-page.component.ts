@@ -54,7 +54,9 @@ export class CategoriesManagementPageComponent implements OnInit {
                 this.dialogService.close();
                 this.categoryService.getAllCategories().subscribe((categories) => {
                     this.categories = categories;
-                })
+                });
+
+                this.changeDetector.detectChanges();
             });
 
             dialogRef.instance.onCancel.subscribe(() => {
@@ -73,7 +75,7 @@ export class CategoriesManagementPageComponent implements OnInit {
                 this.dialogService.close();
                 this.categoryService.getAllCategories().subscribe((categories) => {
                     this.categories = categories;
-                })
+                });
             });
 
             dialogRef.instance.onCancel.subscribe(() => {
