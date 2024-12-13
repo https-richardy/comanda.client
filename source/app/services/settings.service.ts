@@ -8,7 +8,7 @@ import { Response } from "../payloads/responses/response";
 @Injectable({ providedIn: "root" })
 export class SettingsService {
     private readonly httpClient: HttpClient;
-    private readonly baseAddress = `${inject(API_BASE_URL)}/settings`;
+    private readonly baseAddress = `${inject(API_BASE_URL)}api/settings`;
 
     public constructor(httpClient: HttpClient) {
         this.httpClient = httpClient;
