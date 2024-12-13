@@ -19,7 +19,9 @@ export class CategoryCreationFormComponent {
 
     public payload: CategoryCreationRequest = { title: "" };
     public form: FormGroup;
-    public onValidSubmit = new EventEmitter<void>;
+
+    public onValidSubmit = new EventEmitter<void>();
+    public onCancel = new EventEmitter<void>();
 
     public constructor(formBuilder: FormBuilder, categoryService: CategoryService) {
         this.formBuilder = formBuilder;
@@ -39,7 +41,8 @@ export class CategoryCreationFormComponent {
         }
     }
 
-    public onCancel(): void {
+    public handleCancel(): void {
         this.form.reset();
+        this.onCancel.emit();
     }
 }

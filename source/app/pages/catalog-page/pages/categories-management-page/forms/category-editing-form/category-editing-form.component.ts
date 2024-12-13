@@ -18,11 +18,12 @@ export class CategoryEditingFormComponent implements OnInit {
     private readonly formBuilder: FormBuilder;
     private readonly categoryService: CategoryService;
 
-    @Input() public category!: Category;
+    public category!: Category;
     public form: FormGroup;
-
     public payload: CategoryEditingRequest = { id: 0, title: "" };
-    public onValidSubmit = new EventEmitter<void>;
+
+    public onValidSubmit = new EventEmitter<void>();
+    public onCancel = new EventEmitter<void>();
 
     public constructor(formBuilder: FormBuilder, categoryService: CategoryService) {
         this.formBuilder = formBuilder;
@@ -34,7 +35,6 @@ export class CategoryEditingFormComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        console.log(`VINDA DO DATA: ${this.category}`);
         this.form.patchValue({ title: this.category.name });
     }
 
@@ -49,7 +49,8 @@ export class CategoryEditingFormComponent implements OnInit {
         }
     }
 
-    public onCancel(): void {
+    public handleCancel(): void {
         this.form.reset({ title: this.category.name });
+        this.onCancel.emit();
     }
 }
