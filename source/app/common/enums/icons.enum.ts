@@ -4,5 +4,6 @@ export enum Icons {
     LocationOn = "location_on",
     Add = "add",
     Delete = "delete",
-    Edit = "edit"
+    Edit = "edit",
+    Info = "info"
 }
