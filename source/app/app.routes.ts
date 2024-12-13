@@ -7,6 +7,7 @@ import { SuccessPageComponent } from './pages/checkout/success/success.component
 import { CatalogPageComponent } from './pages/catalog-page/catalog-page.component';
 import { CategoriesManagementPageComponent } from './pages/catalog-page/pages/categories-management-page/categories-management-page.component';
 import { SystemSettingsPageComponent } from './pages/system-settings-page/system-settings-page.component';
+import { IngredientManagementPageComponent } from './pages/catalog-page/pages/ingredient-management-page/ingredient-management-page.component';
 
 export const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
     { path: "checkout/sucess", component: SuccessPageComponent },
     { path: "catalog", component: CatalogPageComponent },
     { path: "catalog/categories", component: CategoriesManagementPageComponent },
+    { path: "catalog/ingredients", component: IngredientManagementPageComponent },
     { path: "settings", component: SystemSettingsPageComponent }
 ];
