@@ -41,9 +41,10 @@ export class CategoriesManagementPageComponent implements OnInit {
     }
 
     public openDialog(category?: Category): void {
-        /* if no category is provided, a new one will be created; otherwise, it's for editing */
+        let dialogRef;
+
         if (!category) {
-            var dialogRef = this.dialogService.open(CategoryCreationFormComponent, {
+            dialogRef = this.dialogService.open(CategoryCreationFormComponent, {
                 closeOnBackdrop: true,
                 closeOnEscape: true,
                 showCloseButton: false
@@ -53,27 +54,32 @@ export class CategoriesManagementPageComponent implements OnInit {
                 this.dialogService.close();
                 this.categoryService.getAllCategories().subscribe((categories) => {
                     this.categories = categories;
-                    this.changeDetector.detectChanges();
-                });
+                })
+            });
+
+            dialogRef.instance.onCancel.subscribe(() => {
+                this.dialogService.close();
             });
         }
+        else {
+            dialogRef = this.dialogService.open(CategoryEditingFormComponent, {
+                closeOnBackdrop: true,
+                closeOnEscape: true,
+                showCloseButton: false,
+                data: { category }
+            });
 
-        var editingDialogRef = this.dialogService.open(CategoryEditingFormComponent, {
-            closeOnBackdrop: true,
-            closeOnEscape: true,
-            showCloseButton: false,
-            data: {
-                category: category
-            }
-        })
+            dialogRef.instance.onValidSubmit.subscribe(() => {
+                this.dialogService.close();
+                this.categoryService.getAllCategories().subscribe((categories) => {
+                    this.categories = categories;
+                })
+            });
 
-        editingDialogRef.instance.onValidSubmit.subscribe(() => {
-            this.dialogService.close();
-            this.categoryService.getAllCategories().subscribe((categories) => {
-                this.categories = categories;
-                this.changeDetector.detectChanges();
-            })
-        });
+            dialogRef.instance.onCancel.subscribe(() => {
+                this.dialogService.close();
+            });
+        }
     }
 
     public handleDelete(categoryId: number): void {
