@@ -1,0 +1,7 @@
+<h1>Configurações do Sistema</h1>
+
+
+<input type="checkbox" [(ngModel)]="settings.acceptAutomatically" (toggle)="settings.acceptAutomatically">
+<input type="number" [(ngModel)]="settings.maxConcurrentAutomaticOrders" />
+<input type="number" [(ngModel)]="settings.estimatedDeliveryTimeInMinutes" />
+<input type="number" [(ngModel)]="settings.deliveryFee" />
