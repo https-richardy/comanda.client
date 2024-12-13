@@ -8,6 +8,7 @@ import { CategoryCreationFormComponent } from './forms/category-creation-form/ca
 import { CategoryService } from '../../../../services/category.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { CategoryEditingFormComponent } from './forms/category-editing-form/category-editing-form.component';
+import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
     selector: 'app-categories-management-page',
@@ -54,9 +55,8 @@ export class CategoriesManagementPageComponent implements OnInit {
                 this.dialogService.close();
                 this.categoryService.getAllCategories().subscribe((categories) => {
                     this.categories = categories;
+                    this.changeDetector.detectChanges();
                 });
-
-                this.changeDetector.detectChanges();
             });
 
             dialogRef.instance.onCancel.subscribe(() => {
@@ -85,6 +85,29 @@ export class CategoriesManagementPageComponent implements OnInit {
     }
 
     public handleDelete(categoryId: number): void {
+        var dialogRef = this.dialogService.open(ConfirmationDialogComponent, {
+            closeOnBackdrop: true,
+            closeOnEscape: true,
+            showCloseButton: false,
+            data: {
+                title: 'Excluir Categoria',
+                message: 'Você tem certeza que deseja excluir esta categoria? Esta ação não pode ser desfeita.'
+            }
+        });
 
+        dialogRef.instance.onConfirm.subscribe(() => {
+            this.categoryService.deleteCategory(categoryId).subscribe(() => {
+                this.dialogService.close();
+                this.categoryService.getAllCategories().subscribe((categories) => {
+                    this.categories = categories;
+                });
+
+                this.changeDetector.detectChanges();
+            });
+        });
+
+        dialogRef.instance.onCancel.subscribe(() => {
+            this.dialogService.close();
+        });
     }
 }
