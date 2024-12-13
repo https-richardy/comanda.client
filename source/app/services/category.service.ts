@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { API_BASE_URL } from '../app.tokens';
 import { Category } from '../models/category.model';
 import { Response } from '../payloads/responses/response';
+import { CategoryEditingRequest } from '../payloads/requests/categories-payloads/category-editing.paylod';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
@@ -30,7 +31,19 @@ export class CategoryService {
     }
 
     public createCategory(category: CategoryCreationRequest): Observable<void> {
-        return this.httpClient.post<Response<null>>(this.baseAddress, category).pipe(
+        return this.httpClient.post(this.baseAddress, category).pipe(
+            map(() => void 0)
+        );
+    }
+
+    public updateCategory(category: CategoryEditingRequest): Observable<void> {
+        return this.httpClient.put(`${this.baseAddress}/${category.id}`, category).pipe(
+            map(() => void 0)
+        );
+    }
+
+    public deleteCategory(categoryId: number): Observable<void> {
+        return this.httpClient.delete(`${this.baseAddress}/${categoryId}`).pipe(
             map(() => void 0)
         );
     }
