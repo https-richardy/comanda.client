@@ -8,6 +8,7 @@ import { CatalogPageComponent } from './pages/catalog-page/catalog-page.componen
 import { CategoriesManagementPageComponent } from './pages/catalog-page/pages/categories-management-page/categories-management-page.component';
 import { SystemSettingsPageComponent } from './pages/system-settings-page/system-settings-page.component';
 import { IngredientManagementPageComponent } from './pages/catalog-page/pages/ingredient-management-page/ingredient-management-page.component';
+import { AdditionalsManagementPageComponent } from './pages/catalog-page/pages/additionals-management-page/additionals-management-page.component';
 
 export const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
     { path: "catalog", component: CatalogPageComponent },
     { path: "catalog/categories", component: CategoriesManagementPageComponent },
     { path: "catalog/ingredients", component: IngredientManagementPageComponent },
+    { path: "catalog/additionals", component: AdditionalsManagementPageComponent },
     { path: "settings", component: SystemSettingsPageComponent }
 ];
