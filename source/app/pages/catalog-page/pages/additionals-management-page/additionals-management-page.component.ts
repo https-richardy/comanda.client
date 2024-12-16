@@ -8,6 +8,7 @@ import { AdditionalService } from '../../../../services/additional.service';
 import { AdditionalCreationFormComponent } from './forms/additonals-creation-form/additionals-creation-form.component';
 import { Additional } from '../../../../models/additional.model';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { AdditionalEditingFormComponent } from './forms/additionals-editing-form/additionals-editing-form.component';
 
 
 @Component({
@@ -55,6 +56,25 @@ export class AdditionalsManagementPageComponent implements OnInit {
                 this.additionalService.getAdditionals().subscribe((additionals) => {
                     this.additionals = additionals;
                     this.changeDetector.detectChanges();
+                });
+            });
+
+            dialogRef.instance.onCancel.subscribe(() => {
+                this.dialogService.close();
+            });
+        }
+        else {
+            dialogRef = this.dialogService.open(AdditionalEditingFormComponent, {
+                closeOnBackdrop: true,
+                closeOnEscape: true,
+                showCloseButton: false,
+                data: { additional }
+            });
+
+            dialogRef.instance.onValidSubmit.subscribe(() => {
+                this.dialogService.close();
+                this.additionalService.getAdditionals().subscribe((additionals) => {
+                    this.additionals = additionals;
                 });
             });
 
