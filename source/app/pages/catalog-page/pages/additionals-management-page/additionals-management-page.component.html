@@ -16,15 +16,22 @@
                 <span class="material-symbols-outlined w-5 h-5 mr-2">
                     {{ icons.Add }}
                 </span>
-                    Adicionar adicional
+                Adicionar adicional
             </button>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             <div *ngFor="let additional of additionals"
                 class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
-                <h2 class="text-xl font-semibold mb-4 text-gray-700">{{ additional.name }}</h2>
-                <div class="flex justify-end space-x-2">
+                <div>
+                    <h2 class="text-xl font-semibold mb-1 text-gray-700">
+                        {{ additional.name }}
+                    </h2>
+                    <p class="text-sm text-gray-500">
+                        R$ {{ additional.price | number:'1.2-2' }}
+                    </p>
+                </div>
+                <div class="flex justify-end space-x-2 mt-4">
                     <button (click)="openDialog(additional)" class="text-blue-600 hover:text-blue-800">
                         <span class="material-symbols-outlined w-5 h-5 mr-2 text-blue-600">
                             {{ icons.Edit }}
@@ -40,5 +47,4 @@
             </div>
         </div>
     </div>
-
 </main-layout>
