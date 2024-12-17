@@ -9,6 +9,7 @@ import { CategoriesManagementPageComponent } from './pages/catalog-page/pages/ca
 import { SystemSettingsPageComponent } from './pages/system-settings-page/system-settings-page.component';
 import { IngredientManagementPageComponent } from './pages/catalog-page/pages/ingredient-management-page/ingredient-management-page.component';
 import { AdditionalsManagementPageComponent } from './pages/catalog-page/pages/additionals-management-page/additionals-management-page.component';
+import { ProductManagementPageComponent } from './pages/catalog-page/pages/product-management-page/product-management-page.component';
 
 export const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
     { path: "catalog/categories", component: CategoriesManagementPageComponent },
     { path: "catalog/ingredients", component: IngredientManagementPageComponent },
     { path: "catalog/additionals", component: AdditionalsManagementPageComponent },
+    { path: "catalog/products", component: ProductManagementPageComponent },
     { path: "settings", component: SystemSettingsPageComponent }
 ];
