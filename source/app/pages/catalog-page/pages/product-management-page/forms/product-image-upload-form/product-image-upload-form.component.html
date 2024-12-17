@@ -1,0 +1,30 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="imageUploadForm" class="space-y-4 p-4 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold text-gray-800">Subir Imagem do Produto</h2>
+    <div class="flex flex-col">
+        <label for="image" class="text-sm font-medium text-gray-600 mb-2">Escolha a Imagem</label>
+        <input
+            id="image"
+            type="file"
+            accept="image/*"
+            formControlName="image"
+            (change)="onFileChange($event)"
+            class="block w-full text-sm text-gray-700 file:border file:py-2 file:px-4 file:bg-primary-100 file:text-primary-700 file:rounded-md cursor-pointer"
+        />
+        <div *ngIf="imageUploadForm.get('image')?.invalid && imageUploadForm.get('image')?.touched" class="text-red-500 text-sm mt-1">
+            Selecione uma imagem.
+        </div>
+    </div>
+
+    <div *ngIf="imagePreview" class="mt-4">
+        <p class="text-sm text-gray-600">Pré-visualização:</p>
+        <img [src]="imagePreview" alt="Imagem do produto" class="mt-2 w-full h-auto rounded-lg shadow-sm max-w-xs mx-auto" />
+    </div>
+
+    <button
+        type="submit"
+        [disabled]="imageUploadForm.invalid || !imagePreview"
+        class="w-full py-2 px-4 mt-4 bg-primary text-white rounded-md hover:bg-primary-dark disabled:bg-gray-400 disabled:cursor-not-allowed"
+    >
+        Enviar Imagem
+    </button>
+</form>
