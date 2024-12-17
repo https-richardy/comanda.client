@@ -1,23 +1,26 @@
 <main-layout>
     <div class="container mx-auto px-4 py-8">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-semibold
-                       bg-gradient-to-r from-primary
-                       to-orange-500 bg-clip-text
-                       text-transparent">
-                Gerenciamento de Ingredientes
-            </h1>
-            <button (click)="openDialog()" class="bg-primary text-white
-                                                  px-4 py-2
-                                                  rounded-md
-                                                  hover:bg-opacity-90
-                                                  transition-colors
-                                                  flex items-center">
-                <span class="material-symbols-outlined w-5 h-5 mr-2">
-                    {{ icons.Add }}
-                </span>
-                    Adicionar ingrediente
-            </button>
+        <div
+            class="bg-gradient-to-r from-primary to-orange-500 text-white py-12 px-6 sm:px-8 md:px-12 lg:px-16 rounded-lg shadow-md mb-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">
+                    Gerenciamento de Ingredientes
+                </h1>
+                <p class="text-lg sm:text-xl leading-relaxed mb-6">
+                    Os ingredientes são itens essenciais que compõem os produtos do sistema.
+                    Aqui você pode <strong>criar novos</strong>, <strong>editar existentes</strong>
+                    ou <strong>remover os desnecessários</strong>, facilitando a gestão de seus ingredientes.
+                </p>
+                <div>
+                    <button (click)="openDialog()"
+                        class="bg-white text-primary font-medium px-6 py-3 rounded-md shadow-md hover:bg-gray-100 transition-colors">
+                        <span class="material-symbols-outlined align-middle w-6 h-6 mr-2">
+                            {{ icons.Add }}
+                        </span>
+                        Criar novo ingrediente
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -26,7 +29,7 @@
                 <h2 class="text-xl font-semibold mb-4 text-gray-700">{{ ingredient.name }}</h2>
                 <div class="flex justify-end space-x-2">
                     <button (click)="openDialog(ingredient)" class="text-blue-600 hover:text-blue-800">
-                        <span class="material-symbols-outlined w-5 h-5 mr-2 text-blue-600">
+                        <span class="material-symbols-outlined w-5 h-5 text-blue-600">
                             {{ icons.Edit }}
                         </span>
                     </button>
@@ -40,5 +43,4 @@
             </div>
         </div>
     </div>
-
 </main-layout>
