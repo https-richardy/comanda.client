@@ -15,7 +15,7 @@ export const routes: Routes = [
     { path: "", component: HomePageComponent },
     { path: "profile", component: ProfilePageComponent },
     { path: "cart", component: CartPageComponent },
-    { path: "checkout/sucess", component: SuccessPageComponent },
+    { path: "checkout/success", component: SuccessPageComponent },
     { path: "catalog", component: CatalogPageComponent },
     { path: "catalog/categories", component: CategoriesManagementPageComponent },
     { path: "catalog/ingredients", component: IngredientManagementPageComponent },
