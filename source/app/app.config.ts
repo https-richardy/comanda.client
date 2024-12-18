@@ -12,7 +12,7 @@ export class ApplicationConfigBuilder {
     public static build(): ApplicationConfig {
         return {
             providers: [
-                { provide: API_BASE_URL, useValue: "http://localhost:5168/" },
+                { provide: API_BASE_URL, useValue: "http://comanda-api.somee.com/" },
                 { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
                 { provide: AuthenticationStateProvider, useClass: JwtAuthenticationStateProvider },
 
