@@ -1,0 +1,54 @@
+<main-layout>
+    <div class="container mx-auto px-4 py-8">
+        <div
+            class="bg-gradient-to-r from-primary to-orange-500 text-white py-12 px-6 sm:px-8 md:px-12 lg:px-16 rounded-lg shadow-md mb-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">
+                    Gerenciamento de Produtos
+                </h1>
+                <p class="text-lg sm:text-xl leading-relaxed mb-6">
+                    Os produtos são os itens principais disponíveis no sistema.
+                    Aqui você pode <strong>criar novos</strong>, <strong>editar existentes</strong>,
+                    ou <strong>deletar os que não são mais necessários</strong>, garantindo um gerenciamento completo do
+                    seu catálogo.
+                </p>
+                <div>
+                    <button (click)="openDialog()"
+                        class="bg-white text-primary font-medium px-6 py-3 rounded-md shadow-md hover:bg-gray-100 transition-colors">
+                        <span class="material-symbols-outlined align-middle w-6 h-6 mr-2">
+                            {{ icons.Add }}
+                        </span>
+                        Criar novo produto
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div *ngFor="let product of products"
+                class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+                <div>
+                    <h2 class="text-xl font-semibold mb-1 text-gray-700">
+                        {{ product.title }}
+                    </h2>
+                    <p class="text-sm text-gray-500">
+                        R$ {{ product.price | number:'1.2-2' }}
+                    </p>
+                </div>
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button (click)="openDialog(product)" class="text-blue-600 hover:text-blue-800">
+                        <span class="material-symbols-outlined w-5 h-5 mr-2 text-blue-600">
+                            {{ icons.Edit }}
+                        </span>
+                    </button>
+
+                    <button (click)="handleDelete(product)" class="text-red-600 hover:text-red-800">
+                        <span class="material-symbols-outlined w-5 h-5 text-red-600">
+                            {{ icons.Delete }}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main-layout>
