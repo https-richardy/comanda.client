@@ -7,12 +7,13 @@ import { API_BASE_URL } from './app.tokens';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { AuthenticationStateProvider } from './modules/authorization/authenticationStateProvider';
 import { JwtAuthenticationStateProvider } from './modules/authorization/services/jwt-authentication-state-provider.service';
+import { environment } from '../environments/environment';
 
 export class ApplicationConfigBuilder {
     public static build(): ApplicationConfig {
         return {
             providers: [
-                { provide: API_BASE_URL, useValue: "http://comanda-api.somee.com/" },
+                { provide: API_BASE_URL, useValue: environment.apiUrl },
                 { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
                 { provide: AuthenticationStateProvider, useClass: JwtAuthenticationStateProvider },
 
