@@ -36,7 +36,12 @@ export class SuccessPageComponent implements OnInit {
     public processSuccessfulPayment(): void {
         const sessionId: string = this.route.snapshot.queryParamMap.get('sessionId') as string;
         if (sessionId) {
-            this.orderInformation = this.checkoutService.handleSuccessfulPayment(sessionId)
+            this.orderInformation = this.checkoutService.handleSuccessfulPayment(sessionId);
+            this.orderInformation.subscribe({
+                next: () => {
+                    this.cartService.clearCart();
+                },
+            });
         }
     }
 }
