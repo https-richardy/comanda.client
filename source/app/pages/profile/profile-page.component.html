@@ -1,38 +1,42 @@
-<div class="bg-white h-full mt-10 mx-10">
-    <div class="mx-auto max-w-2xl">
-        <!-- main card -->
-        <div class="mb-6 overflow-hidden rounded-lg bg-white shadow">
-            <profile-info [user]="user" />
-
-            <!-- navigation links -->
-            <nav class="divide-y divide-gray-200">
-                <profile-action
-                    icon="{{ icons.User }}"
-                    label="Gerenciar Dados do Perfil" link="/profile/manage">
-                </profile-action>
-
-                <profile-action
-                    icon="{{ icons.Receipt }}"
-                    label="Histórico de Pedidos" link="/profile/orders">
-                </profile-action>
-
-                <profile-action
-                    icon="{{ icons.Export }}"
-                    label="Exportar Dados" link="/profile/export">
-                </profile-action>
-            </nav>
+<authorize-view [roles]="['Customer']">
+    <authorized>
+        <div class="bg-white h-full mt-10 mx-10">
+            <div class="mx-auto max-w-2xl">
+                <!-- main card -->
+                <div class="mb-6 overflow-hidden rounded-lg bg-white shadow">
+                    <profile-info [user]="user" />
+        
+                    <!-- navigation links -->
+                    <nav class="divide-y divide-gray-200">
+                        <profile-action
+                            icon="{{ icons.User }}"
+                            label="Gerenciar Dados do Perfil" link="/profile/manage">
+                        </profile-action>
+        
+                        <profile-action
+                            icon="{{ icons.Receipt }}"
+                            label="Histórico de Pedidos" link="/profile/orders">
+                        </profile-action>
+        
+                        <profile-action
+                            icon="{{ icons.Export }}"
+                            label="Exportar Dados" link="/profile/export">
+                        </profile-action>
+                    </nav>
+                </div>
+        
+                <div class="mt-6 space-y-4">
+                    <button (click)="logout()"
+                        class="w-full flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
+                        </svg>
+                        <span>Sair</span>
+                    </button>
+                </div>
+            </div>
+            <navigation />
         </div>
-
-        <div class="mt-6 space-y-4">
-            <button (click)="logout()"
-                class="w-full flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
-                </svg>
-                <span>Sair</span>
-            </button>
-        </div>
-    </div>
-    <navigation />
-</div>
+    </authorized>
+</authorize-view>

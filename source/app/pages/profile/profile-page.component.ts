@@ -10,17 +10,21 @@ import { ProfileService } from '../../services/profile.service';
 import { DialogService } from '../../services/dialog.service';
 import { LogoutConfirmationDialogComponent } from '../../components/dialogs/logout-confirmation-dialog/logout-confirmation-dialog.component';
 import { StorageConstants } from '../../common/storage-constants';
+import { AuthorizeViewComponent } from "../../modules/authorization/components/authorize-view/authorize-view.component";
+import { AuthorizedComponent } from "../../modules/authorization/components/authorized/authorized.component";
 
 @Component({
     selector: 'app-profile-page',
+    templateUrl: './profile-page.component.html',
     standalone: true,
     imports: [
         CommonModule,
         NavigationComponent,
         ProfileActionComponent,
-        ProfileInfoComponent
-],
-    templateUrl: './profile-page.component.html',
+        ProfileInfoComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+    ],
 })
 export class ProfilePageComponent implements OnInit {
     private readonly profileService: ProfileService;
