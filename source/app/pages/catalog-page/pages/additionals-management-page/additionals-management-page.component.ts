@@ -9,16 +9,20 @@ import { Additional } from '../../../../models/additional.model';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { AdditionalEditingFormComponent } from './forms/additionals-editing-form/additionals-editing-form.component';
 import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
+import { AuthorizeViewComponent } from "../../../../modules/authorization/components/authorize-view/authorize-view.component";
+import { AuthorizedComponent } from "../../../../modules/authorization/components/authorized/authorized.component";
 
 
 @Component({
     selector: 'app-additionals-management-page',
+    templateUrl: './additionals-management-page.component.html',
     standalone: true,
     imports: [
         CommonModule,
-        AdministratorDefaultLayoutComponent
-    ],
-    templateUrl: './additionals-management-page.component.html'
+        AdministratorDefaultLayoutComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+    ]
 })
 export class AdditionalsManagementPageComponent implements OnInit {
     private readonly dialogService: DialogService;
