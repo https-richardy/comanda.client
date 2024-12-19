@@ -26,7 +26,7 @@ export class SuccessPageComponent implements OnInit {
     private readonly route: ActivatedRoute;
     private readonly routeManager: Router;
 
-    public orderInformation = new Observable<OrderConfirmation>;
+    public orderInformation = {  } as OrderConfirmation;
 
     public constructor(
         checkoutService: CheckoutService,
@@ -53,12 +53,12 @@ export class SuccessPageComponent implements OnInit {
 
     public processSuccessfulPayment(sessionId: string): void {
         if (sessionId) {
-            this.orderInformation = this.checkoutService.handleSuccessfulPayment(sessionId);
-            this.orderInformation.subscribe({
-                next: () => {
+            this.checkoutService
+                .handleSuccessfulPayment(sessionId)
+                .subscribe((orderConfirmation) => {
+                    this.orderInformation = orderConfirmation;
                     this.cartService.clearCart();
-                },
-            });
+                });
         }
     }
 }

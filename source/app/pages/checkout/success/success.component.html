@@ -16,22 +16,22 @@
                             </p>
                         </div>
 
-                        <div class="mt-8" *ngIf="orderInformation | async as resolvedOrderInformation; else loading">
+                        <div class="mt-8" *ngIf="orderInformation; else loading">
                             <div class="mt-8 space-y-4">
                                 <div class="flex justify-between">
                                     <span class="text-sm font-medium text-gray-500">ID do Pedido</span>
-                                    <span class="text-sm font-semibold text-gray-900">#{{ resolvedOrderInformation.orderId }}</span>
+                                    <span class="text-sm font-semibold text-gray-900">#{{ orderInformation.orderId }}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-sm font-medium text-gray-500">Total Pago</span>
                                     <span class="text-sm font-semibold text-gray-900">
-                                        {{ resolvedOrderInformation.totalPaid | currency:'BRL':'symbol':'1.2-2' }}
+                                        {{ orderInformation.totalPaid | currency:'BRL':'symbol':'1.2-2' }}
                                     </span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-sm font-medium text-gray-500">Tempo estimado de espera</span>
                                     <span class="text-sm font-semibold text-gray-900">
-                                        {{ resolvedOrderInformation.estimatedDeliveryTimeInMinutes }} minutos
+                                        {{ orderInformation.estimatedDeliveryTimeInMinutes }} minutos
                                     </span>
                                 </div>
                             </div>
