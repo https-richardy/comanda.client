@@ -3,7 +3,6 @@ import { CheckoutService } from '../../../services/checkout.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { OrderConfirmation } from '../../../payloads/responses/checkout-payloads/order-confirmation.payload';
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CustomerDefaultLayoutComponent } from "../../../layout/customer-default-layout/customer-default-layout.component";
 import { AuthorizeViewComponent } from "../../../modules/authorization/components/authorize-view/authorize-view.component";
