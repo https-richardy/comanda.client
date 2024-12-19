@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { CheckoutSession } from '../payloads/responses/checkout-payloads/checkoutSession';
 import { Response } from '../payloads/responses/response';
 import { Address } from '../models/address.model';
+import { OrderConfirmation } from '../payloads/responses/checkout-payloads/order-confirmation.payload';
 
 @Injectable({ providedIn: 'root' })
 export class CheckoutService {
@@ -24,11 +25,15 @@ export class CheckoutService {
             }));
     }
 
-    public handleSuccessfulPayment(sessionId: string): Observable<any> {
+    public handleSuccessfulPayment(sessionId: string): Observable<OrderConfirmation> {
         var endpoint = `${this.baseAddress}/success`;
         var httpParams = new HttpParams();
         var params = httpParams.set('sessionId', sessionId);
 
-        return this.httpClient.get(endpoint, { params });
+        return this.httpClient.get<Response<OrderConfirmation>>(endpoint, { params }).pipe(
+            map((response: Response<OrderConfirmation>) => {
+                return response.data as OrderConfirmation;
+            })
+        );
     }
 }
