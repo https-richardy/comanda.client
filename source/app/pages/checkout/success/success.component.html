@@ -15,7 +15,7 @@
                                 O pagamento foi concluído com sucesso e o seu pedido foi criado. Agora é só aguardar. ;)
                             </p>
                         </div>
-        
+
                         <div class="mt-8" *ngIf="orderInformation | async as resolvedOrderInformation; else loading">
                             <div class="mt-8 space-y-4">
                                 <div class="flex justify-between">
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <ng-template #loading>
                             <div class="space-y-4 animate-pulse mt-4">
                                 <div class="flex justify-between">
@@ -53,8 +53,7 @@
                                 </div>
                             </div>
                         </ng-template>
-        
-        
+
                         <div class="mt-8">
                             <a href="/" class="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200">
                                 Voltar para as compras
@@ -67,6 +66,6 @@
                     </div>
                 </div>
             </div>
-        </customer-default-layout>        
+        </customer-default-layout>
     </authorized>
 </authorize-view>
