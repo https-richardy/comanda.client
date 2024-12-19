@@ -3,17 +3,20 @@ import { Category } from '../../../../models/category.model';
 import { CommonModule } from '@angular/common';
 import { DialogService } from '../../../../services/dialog.service';
 import { Icons } from '../../../../common/enums/icons.enum';
-import { MainLayoutComponent } from "../../../../layout/main-layout/main-layout.component";
 import { CategoryCreationFormComponent } from './forms/category-creation-form/category-creation-form.component';
 import { CategoryService } from '../../../../services/category.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { CategoryEditingFormComponent } from './forms/category-editing-form/category-editing-form.component';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
 
 @Component({
     selector: 'app-categories-management-page',
     standalone: true,
-    imports: [CommonModule, MainLayoutComponent],
+    imports: [
+        CommonModule,
+        AdministratorDefaultLayoutComponent
+    ],
     templateUrl: './categories-management-page.component.html'
 })
 export class CategoriesManagementPageComponent implements OnInit {
