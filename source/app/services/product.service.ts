@@ -76,4 +76,10 @@ export class ProductService implements IProductService {
             }
         );
     }
+
+    public deleteProduct(product: Product): Observable<void> {
+        return this.httpClient.delete<void>(`${this.baseAddress}/${product.id}`).pipe(
+            map(() => void 0)
+        );
+    }
 }
