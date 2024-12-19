@@ -3,17 +3,21 @@ import { MainLayoutComponent } from "../../../layout/main-layout/main-layout.com
 import { CheckoutService } from '../../../services/checkout.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
+import { OrderConfirmation } from '../../../payloads/responses/checkout-payloads/order-confirmation.payload';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-success',
     standalone: true,
-    imports: [ MainLayoutComponent ],
+    imports: [ MainLayoutComponent, CommonModule ],
     templateUrl: './success.component.html'
 })
 export class SuccessPageComponent implements OnInit {
     private readonly checkoutService: CheckoutService;
     private readonly cartService: CartService;
     private readonly route: ActivatedRoute;
+    public orderInformation = new Observable<OrderConfirmation>;
 
     public constructor(
         checkoutService: CheckoutService,
@@ -32,18 +36,7 @@ export class SuccessPageComponent implements OnInit {
     public processSuccessfulPayment(): void {
         const sessionId: string = this.route.snapshot.queryParamMap.get('sessionId') as string;
         if (sessionId) {
-            this.checkoutService.handleSuccessfulPayment(sessionId)
-                .subscribe({
-                    next: (response) => {
-                        this.cartService.clearCart();
-                    },
-                    error: (error) => {
-                        console.error('Error processing stripe payment:', error);
-                    },
-                    complete: () => {
-                        console.log('Stripe payment processing complete');
-                    }
-                });
+            this.orderInformation = this.checkoutService.handleSuccessfulPayment(sessionId)
         }
     }
 }
