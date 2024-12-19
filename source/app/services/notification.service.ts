@@ -2,12 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { API_BASE_URL } from '../app.tokens';
 import { StorageConstants } from '../common/storage-constants';
-
-type Notification = {
-    title: string;
-    message: string;
-    timestamp: Date;
-};
+import { Notification } from '../payloads/responses/notification';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
