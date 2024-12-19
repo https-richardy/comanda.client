@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { MainLayoutComponent } from "../../layout/main-layout/main-layout.component";
 import { CatalogManagementCardComponent } from "./components/catalog-management-card/catalog-management-card.component";
+import { AdministratorDefaultLayoutComponent } from "../../layout/administrator-default-layout/administrator-default-layout.component";
 
 @Component({
     selector: 'app-catalog-page',
     standalone: true,
+    templateUrl: './catalog-page.component.html',
     imports: [
-        MainLayoutComponent,
         CatalogManagementCardComponent,
+        AdministratorDefaultLayoutComponent
     ],
-    templateUrl: './catalog-page.component.html'
 })
 export class CatalogPageComponent {
 
