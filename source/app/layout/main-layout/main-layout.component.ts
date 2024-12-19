@@ -9,15 +9,13 @@ import { CustomerDefaultLayoutComponent } from "../customer-default-layout/custo
 @Component({
     selector: 'main-layout',
     standalone: true,
+    templateUrl: './main-layout.component.html',
     imports: [
-    NavigationComponent,
-    AiRecommendationFabComponent,
-    AuthorizeViewComponent,
-    AuthorizedComponent,
-    AdministratorDefaultLayoutComponent,
-    CustomerDefaultLayoutComponent
-],
-    templateUrl: './main-layout.component.html'
+        AuthorizeViewComponent,
+        AuthorizedComponent,
+        AdministratorDefaultLayoutComponent,
+        CustomerDefaultLayoutComponent
+    ],
 })
 export class MainLayoutComponent {
 
