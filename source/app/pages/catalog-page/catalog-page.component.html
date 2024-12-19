@@ -1,31 +1,35 @@
-<administrator-default-layout>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        <catalog-management-card
-            iconClass="bx bx-cube"
-            title="Gerenciar Produtos"
-            description="Administre os produtos disponíveis em seu catálogo."
-            navigateTo="catalog/products">
-        </catalog-management-card>
+<authorize-view [roles]="['Administrator']">
+    <authorized>
+        <administrator-default-layout>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+                <catalog-management-card
+                    iconClass="bx bx-cube"
+                    title="Gerenciar Produtos"
+                    description="Administre os produtos disponíveis em seu catálogo."
+                    navigateTo="catalog/products">
+                </catalog-management-card>
 
-        <catalog-management-card
-            iconClass="bx bx-lemon"
-            title="Gerenciar Ingredientes"
-            description="Organize os ingredientes disponíveis."
-            navigateTo="catalog/ingredients">
-        </catalog-management-card>
+                <catalog-management-card
+                    iconClass="bx bx-lemon"
+                    title="Gerenciar Ingredientes"
+                    description="Organize os ingredientes disponíveis."
+                    navigateTo="catalog/ingredients">
+                </catalog-management-card>
+        
+                <catalog-management-card
+                    iconClass="bx bx-category"
+                    title="Gerenciar Categorias"
+                    description="Agrupe os produtos em categorias."
+                    navigateTo="catalog/categories">
+                </catalog-management-card>
 
-        <catalog-management-card
-            iconClass="bx bx-category"
-            title="Gerenciar Categorias"
-            description="Agrupe os produtos em categorias."
-            navigateTo="catalog/categories">
-        </catalog-management-card>
-
-        <catalog-management-card
-            iconClass="bx bx-plus"
-            title="Gerenciar Adicionais"
-            description="Adicione opções extras para os produtos."
-            navigateTo="catalog/additionals">
-        </catalog-management-card>
-    </div>
-</administrator-default-layout>
+                <catalog-management-card
+                    iconClass="bx bx-plus"
+                    title="Gerenciar Adicionais"
+                    description="Adicione opções extras para os produtos."
+                    navigateTo="catalog/additionals">
+                </catalog-management-card>
+            </div>
+        </administrator-default-layout>
+    </authorized>
+</authorize-view>
