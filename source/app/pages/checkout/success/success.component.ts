@@ -6,12 +6,20 @@ import { CartService } from '../../../services/cart.service';
 import { OrderConfirmation } from '../../../payloads/responses/checkout-payloads/order-confirmation.payload';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { CustomerDefaultLayoutComponent } from "../../../layout/customer-default-layout/customer-default-layout.component";
+import { AuthorizeViewComponent } from "../../../modules/authorization/components/authorize-view/authorize-view.component";
+import { AuthorizedComponent } from "../../../modules/authorization/components/authorized/authorized.component";
 
 @Component({
     selector: 'app-success',
+    templateUrl: './success.component.html',
     standalone: true,
-    imports: [ MainLayoutComponent, CommonModule ],
-    templateUrl: './success.component.html'
+    imports: [
+        CommonModule,
+        CustomerDefaultLayoutComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+    ]
 })
 export class SuccessPageComponent implements OnInit {
     private readonly checkoutService: CheckoutService;

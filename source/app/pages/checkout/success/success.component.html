@@ -1,68 +1,72 @@
-<main-layout>
-    <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 pb-20 mx-6">
-        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                <div class="text-center">
-                    <h2 class="mt-6 text-2xl font-semibold
-                               bg-gradient-to-r from-primary
-                               to-orange-500 bg-clip-text
-                               text-transparent">
-                            Sucesso!
-                    </h2>
-                    <p class="mt-2 text-sm text-gray-600">
-                        O pagamento foi concluído com sucesso e o seu pedido foi criado. Agora é só aguardar. ;)
-                    </p>
-                </div>
-
-                <div class="mt-8" *ngIf="orderInformation | async as resolvedOrderInformation; else loading">
-                    <div class="mt-8 space-y-4">
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-500">ID do Pedido</span>
-                            <span class="text-sm font-semibold text-gray-900">#{{ resolvedOrderInformation.orderId }}</span>
+<authorize-view [roles]="['Customer']">
+    <authorized>
+        <customer-default-layout>
+            <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 pb-20 mx-6">
+                <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                        <div class="text-center">
+                            <h2 class="mt-6 text-2xl font-semibold
+                                       bg-gradient-to-r from-primary
+                                       to-orange-500 bg-clip-text
+                                       text-transparent">
+                                    Sucesso!
+                            </h2>
+                            <p class="mt-2 text-sm text-gray-600">
+                                O pagamento foi concluído com sucesso e o seu pedido foi criado. Agora é só aguardar. ;)
+                            </p>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-500">Total Pago</span>
-                            <span class="text-sm font-semibold text-gray-900">
-                                {{ resolvedOrderInformation.totalPaid | currency:'BRL':'symbol':'1.2-2' }}
-                            </span>
+        
+                        <div class="mt-8" *ngIf="orderInformation | async as resolvedOrderInformation; else loading">
+                            <div class="mt-8 space-y-4">
+                                <div class="flex justify-between">
+                                    <span class="text-sm font-medium text-gray-500">ID do Pedido</span>
+                                    <span class="text-sm font-semibold text-gray-900">#{{ resolvedOrderInformation.orderId }}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm font-medium text-gray-500">Total Pago</span>
+                                    <span class="text-sm font-semibold text-gray-900">
+                                        {{ resolvedOrderInformation.totalPaid | currency:'BRL':'symbol':'1.2-2' }}
+                                    </span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm font-medium text-gray-500">Tempo estimado de espera</span>
+                                    <span class="text-sm font-semibold text-gray-900">
+                                        {{ resolvedOrderInformation.estimatedDeliveryTimeInMinutes }} minutos
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-500">Tempo estimado de espera</span>
-                            <span class="text-sm font-semibold text-gray-900">
-                                {{ resolvedOrderInformation.estimatedDeliveryTimeInMinutes }} minutos
-                            </span>
+                        
+                        <ng-template #loading>
+                            <div class="space-y-4 animate-pulse mt-4">
+                                <div class="flex justify-between">
+                                    <span class="text-sm font-medium text-gray-500">ID do Pedido</span>
+                                    <span class="bg-gray-300 h-5 w-40 rounded"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm font-medium text-gray-500">Total Pago</span>
+                                    <span class="bg-gray-300 h-5 w-40 rounded"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm font-medium text-gray-500">Tempo estimado de espera</span>
+                                    <span class="bg-gray-300 h-5 w-20 rounded"></span>
+                                </div>
+                            </div>
+                        </ng-template>
+        
+        
+                        <div class="mt-8">
+                            <a href="/" class="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200">
+                                Voltar para as compras
+                                <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                </div>
-                
-                <ng-template #loading>
-                    <div class="space-y-4 animate-pulse mt-4">
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-500">ID do Pedido</span>
-                            <span class="bg-gray-300 h-5 w-40 rounded"></span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-500">Total Pago</span>
-                            <span class="bg-gray-300 h-5 w-40 rounded"></span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-500">Tempo estimado de espera</span>
-                            <span class="bg-gray-300 h-5 w-20 rounded"></span>
-                        </div>
-                    </div>
-                </ng-template>
-
-
-                <div class="mt-8">
-                    <a href="/" class="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200">
-                        Voltar para as compras
-                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
                 </div>
             </div>
-        </div>
-    </div>
-</main-layout>
+        </customer-default-layout>        
+    </authorized>
+</authorize-view>
