@@ -12,6 +12,7 @@ type Notification = {
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
     private readonly hubConnection: signalR.HubConnection
+    private readonly audio = new Audio("assets/sounds/notification.mp3");
 
     public constructor() {
         this.hubConnection = new signalR.HubConnectionBuilder()
@@ -25,6 +26,7 @@ export class NotificationService {
 
         this.hubConnection.on("receiveNotification", (notification: Notification) => {
             console.log(notification);
+            this.playNotificationSound();
         });
     }
 
@@ -37,5 +39,11 @@ export class NotificationService {
             .catch((error) => {
                 console.error("Erro ao conectar ao SignalR Hub:", error);
             });
+    }
+
+    private playNotificationSound(): void {
+        this.audio.play().catch((error) => {
+            console.error("Erro ao tentar reproduzir o som da notificação:", error);
+        });
     }
 }
