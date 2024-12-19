@@ -5,5 +5,6 @@ export enum Icons {
     Add = "add",
     Delete = "delete",
     Edit = "edit",
-    Info = "info"
+    Info = "info",
+    ReceiptLong = "receipt_long"
 }
