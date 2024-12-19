@@ -45,7 +45,6 @@ export class SuccessPageComponent implements OnInit {
     }
 
     public processSuccessfulPayment(sessionId: string): void {
-
         if (sessionId) {
             this.orderInformation = this.checkoutService.handleSuccessfulPayment(sessionId);
             this.orderInformation.subscribe({
