@@ -1,42 +1,46 @@
-<administrator-default-layout>
-    <div class="container mx-auto px-4 py-8">
-        <div
-            class="bg-gradient-to-r from-primary to-orange-500 text-white py-12 px-6 sm:px-8 md:px-12 lg:px-16 rounded-lg shadow-md mb-8">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Gerenciamento de Categorias</h1>
-                <p class="text-lg sm:text-xl leading-relaxed mb-6">
-                    As categorias organizam os <strong>produtos</strong> e
-                    <a href="/catalog/additionals" class="underline hover:text-orange-200 transition-colors">
-                        adicionais
-                    </a> do sistema.
-                </p>
-                <button (click)="openDialog()"
-                    class="bg-white text-primary px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors flex items-center mx-auto">
-                    <span class="material-symbols-outlined w-5 h-5 mr-2">
-                        {{ icons.Add }}
-                    </span>
-                    Criar nova categoria
-                </button>
-            </div>
-        </div>
+<authorize-view [roles]="['Administrator']">
+    <authorized>
+        <administrator-default-layout>
+            <div class="container mx-auto px-4 py-8">
+                <div
+                    class="bg-gradient-to-r from-primary to-orange-500 text-white py-12 px-6 sm:px-8 md:px-12 lg:px-16 rounded-lg shadow-md mb-8">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h1 class="text-3xl sm:text-4xl font-bold mb-4">Gerenciamento de Categorias</h1>
+                        <p class="text-lg sm:text-xl leading-relaxed mb-6">
+                            As categorias organizam os <strong>produtos</strong> e
+                            <a href="/catalog/additionals" class="underline hover:text-orange-200 transition-colors">
+                                adicionais
+                            </a> do sistema.
+                        </p>
+                        <button (click)="openDialog()"
+                            class="bg-white text-primary px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors flex items-center mx-auto">
+                            <span class="material-symbols-outlined w-5 h-5 mr-2">
+                                {{ icons.Add }}
+                            </span>
+                            Criar nova categoria
+                        </button>
+                    </div>
+                </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <div *ngFor="let category of categories"
-                class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
-                <h2 class="text-xl font-semibold mb-4 text-gray-700">{{ category.name }}</h2>
-                <div class="flex justify-end space-x-2">
-                    <button (click)="openDialog(category)" class="text-blue-600 hover:text-blue-800">
-                        <span class="material-symbols-outlined w-5 h-5 mr-2 text-blue-600">
-                            {{ icons.Edit }}
-                        </span>
-                    </button>
-                    <button (click)="handleDelete(category.id)" class="text-red-600 hover:text-red-800">
-                        <span class="material-symbols-outlined w-5 h-5 text-red-600">
-                            {{ icons.Delete }}
-                        </span>
-                    </button>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div *ngFor="let category of categories"
+                        class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+                        <h2 class="text-xl font-semibold mb-4 text-gray-700">{{ category.name }}</h2>
+                        <div class="flex justify-end space-x-2">
+                            <button (click)="openDialog(category)" class="text-blue-600 hover:text-blue-800">
+                                <span class="material-symbols-outlined w-5 h-5 mr-2 text-blue-600">
+                                    {{ icons.Edit }}
+                                </span>
+                            </button>
+                            <button (click)="handleDelete(category.id)" class="text-red-600 hover:text-red-800">
+                                <span class="material-symbols-outlined w-5 h-5 text-red-600">
+                                    {{ icons.Delete }}
+                                </span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</administrator-default-layout>
+        </administrator-default-layout>
+    </authorized>
+</authorize-view>

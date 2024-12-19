@@ -8,14 +8,18 @@ import { IngredientCreationFormComponent } from './forms/ingredient-creation-for
 import { IngredientEditingFormComponent } from './forms/ingredient-editing-form/ingredient-editing-form.component';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
+import { AuthorizeViewComponent } from "../../../../modules/authorization/components/authorize-view/authorize-view.component";
+import { AuthorizedComponent } from "../../../../modules/authorization/components/authorized/authorized.component";
 
 @Component({
     selector: 'app-ingredient-management-page',
     standalone: true,
     imports: [
         CommonModule,
-        AdministratorDefaultLayoutComponent
-    ],
+        AdministratorDefaultLayoutComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+],
     templateUrl: './ingredient-management-page.component.html'
 })
 export class IngredientManagementPageComponent implements OnInit {

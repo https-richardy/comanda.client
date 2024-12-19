@@ -9,14 +9,18 @@ import { ChangeDetectorRef } from '@angular/core';
 import { CategoryEditingFormComponent } from './forms/category-editing-form/category-editing-form.component';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
+import { AuthorizeViewComponent } from "../../../../modules/authorization/components/authorize-view/authorize-view.component";
+import { AuthorizedComponent } from "../../../../modules/authorization/components/authorized/authorized.component";
 
 @Component({
     selector: 'app-categories-management-page',
     standalone: true,
     imports: [
         CommonModule,
-        AdministratorDefaultLayoutComponent
-    ],
+        AdministratorDefaultLayoutComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+],
     templateUrl: './categories-management-page.component.html'
 })
 export class CategoriesManagementPageComponent implements OnInit {
