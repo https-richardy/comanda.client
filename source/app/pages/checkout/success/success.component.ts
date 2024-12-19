@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MainLayoutComponent } from "../../../layout/main-layout/main-layout.component";
 import { CheckoutService } from '../../../services/checkout.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { OrderConfirmation } from '../../../payloads/responses/checkout-payloads/order-confirmation.payload';
 import { Observable } from 'rxjs';
