@@ -8,11 +8,11 @@ import { AuthorizedComponent } from "../../modules/authorization/components/auth
     selector: 'main-layout',
     standalone: true,
     imports: [
-    NavigationComponent,
-    AiRecommendationFabComponent,
-    AuthorizeViewComponent,
-    AuthorizedComponent
-],
+        NavigationComponent,
+        AiRecommendationFabComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+    ],
     templateUrl: './main-layout.component.html'
 })
 export class MainLayoutComponent {
