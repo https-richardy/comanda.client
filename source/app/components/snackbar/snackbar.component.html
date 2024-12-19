@@ -1,0 +1,22 @@
+<div class="fixed flex items-center justify-center z-50 animate-fade-in"
+    [ngClass]="{
+        'bottom-5 right-4': position === 'bottom-right',
+        'bottom-8 left-8': position === 'bottom-left',
+        'top-8 left-8': position === 'top-left',
+        'top-8 right-8': position === 'top-right'
+    }">
+    <div class="flex items-center gap-4 rounded-lg shadow-xl px-8 py-4 transition-transform bg-white duration-300 max-w-4xl w-full sm:w-auto border-b-4 "
+        [ngClass]="{
+            'border-blue-400': type === 'info',
+            'border-yellow-400': type === 'warning',
+            'border-red-500': type === 'error'
+        }">
+        <span *ngIf="icon" class="material-symbols-outlined text-3xl text-gray-700">
+            {{ icon }}
+        </span>
+        <div class="flex-1 min-w-0">
+            <strong class="font-semibold text-lg block mb-1 text-gray-900">{{ title }}</strong>
+            <p class="text-base opacity-90 text-gray-600">{{ text }}</p>
+        </div>
+    </div>
+</div>
