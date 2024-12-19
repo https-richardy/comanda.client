@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MainLayoutComponent } from "../../../../layout/main-layout/main-layout.component";
 import { Ingredient } from '../../../../models/ingredient.model';
 import { Icons } from '../../../../common/enums/icons.enum';
 import { CommonModule } from '@angular/common';
@@ -8,11 +7,15 @@ import { IngredientService } from '../../../../services/ingredient.service';
 import { IngredientCreationFormComponent } from './forms/ingredient-creation-form/ingredient-creation-form.component';
 import { IngredientEditingFormComponent } from './forms/ingredient-editing-form/ingredient-editing-form.component';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
 
 @Component({
     selector: 'app-ingredient-management-page',
     standalone: true,
-    imports: [MainLayoutComponent, CommonModule],
+    imports: [
+        CommonModule,
+        AdministratorDefaultLayoutComponent
+    ],
     templateUrl: './ingredient-management-page.component.html'
 })
 export class IngredientManagementPageComponent implements OnInit {
