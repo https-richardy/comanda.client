@@ -1,88 +1,92 @@
-<administrator-default-layout>
-    <div class="container mx-auto p-6">
-        <h1 class="text-2xl font-semibold
-                   bg-gradient-to-r from-primary
-                   to-orange-500 bg-clip-text
-                   text-transparent">
-                   Configurações do Sistema
-        </h1>
-        <div class="space-y-8 mt-8">
-            <!-- Auto-accept orders -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
-                <div class="flex items-center space-x-3">
-                    <label for="auto-accept" class="text-lg font-medium text-gray-700">
-                        Aceitar pedidos automaticamente
-                    </label>
-                    <tooltip text="Ative para aceitar pedidos automaticamente sem intervenção manual.">
-                        <span class="material-symbols-outlined w-5 h-5 text-gray-400">
-                            {{ icons.Info }}
-                        </span>
-                    </tooltip>
-                </div>
-                <div class="mt-4 sm:mt-0">
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="auto-accept" [(ngModel)]="settings.acceptAutomatically"
-                            (change)="handleOnUpdate()" class="sr-only peer">
-                        <div
-                            class="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-2 peer-focus:ring-bg-primary peer-checked:bg-primary transition">
+<authorize-view [roles]="['Administrator']">
+    <authorized>
+        <administrator-default-layout>
+            <div class="container mx-auto p-6">
+                <h1 class="text-2xl font-semibold
+                           bg-gradient-to-r from-primary
+                           to-orange-500 bg-clip-text
+                           text-transparent">
+                    Configurações do Sistema
+                </h1>
+                <div class="space-y-8 mt-8">
+                    <!-- Auto-accept orders -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
+                        <div class="flex items-center space-x-3">
+                            <label for="auto-accept" class="text-lg font-medium text-gray-700">
+                                Aceitar pedidos automaticamente
+                            </label>
+                            <tooltip text="Ative para aceitar pedidos automaticamente sem intervenção manual.">
+                                <span class="material-symbols-outlined w-5 h-5 text-gray-400">
+                                    {{ icons.Info }}
+                                </span>
+                            </tooltip>
                         </div>
-                        <div
-                            class="absolute w-4 h-4 bg-white rounded-full shadow left-1 top-1 peer-checked:translate-x-full peer-checked:text-primary transition">
+                        <div class="mt-4 sm:mt-0">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="auto-accept" [(ngModel)]="settings.acceptAutomatically"
+                                    (change)="handleOnUpdate()" class="sr-only peer">
+                                <div
+                                    class="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-2 peer-focus:ring-bg-primary peer-checked:bg-primary transition">
+                                </div>
+                                <div
+                                    class="absolute w-4 h-4 bg-white rounded-full shadow left-1 top-1 peer-checked:translate-x-full peer-checked:text-primary transition">
+                                </div>
+                            </label>
                         </div>
-                    </label>
-                </div>
-            </div>
+                    </div>
 
-            <!-- Maximum automatic orders accepted -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
-                <div class="flex items-center space-x-3">
-                    <label for="max-orders" class="text-lg font-medium text-gray-700">
-                        Máximo de pedidos aceitos automaticamente
-                    </label>
-                    <tooltip text="Limite máximo de pedidos aceitos automaticamente para evitar sobrecarga.">
-                        <span class="material-symbols-outlined w-5 h-5 text-gray-400">
-                            {{ icons.Info }}
-                        </span>
-                    </tooltip>
-                </div>
-                <input id="max-orders" type="number" [(ngModel)]="settings.maxConcurrentAutomaticOrders"
-                    (change)="handleOnUpdate()"
-                    class="mt-4 sm:mt-0 w-32 px-2 py-1 border border-gray-300 rounded-md focus:ring-bg-primary focus:border-bg-primary text-gray-700" />
-            </div>
+                    <!-- Maximum automatic orders accepted -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
+                        <div class="flex items-center space-x-3">
+                            <label for="max-orders" class="text-lg font-medium text-gray-700">
+                                Máximo de pedidos aceitos automaticamente
+                            </label>
+                            <tooltip text="Limite máximo de pedidos aceitos automaticamente para evitar sobrecarga.">
+                                <span class="material-symbols-outlined w-5 h-5 text-gray-400">
+                                    {{ icons.Info }}
+                                </span>
+                            </tooltip>
+                        </div>
+                        <input id="max-orders" type="number" [(ngModel)]="settings.maxConcurrentAutomaticOrders"
+                            (change)="handleOnUpdate()"
+                            class="mt-4 sm:mt-0 w-32 px-2 py-1 border border-gray-300 rounded-md focus:ring-bg-primary focus:border-bg-primary text-gray-700" />
+                    </div>
 
-            <!-- Estimated delivery time -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
-                <div class="flex items-center space-x-3">
-                    <label for="estimated-time" class="text-lg font-medium text-gray-700">
-                        Tempo estimado de entrega (minutos)
-                    </label>
-                    <tooltip text="Tempo médio estimado para a entrega dos pedidos.">
-                        <span class="material-symbols-outlined w-5 h-5 text-gray-400">
-                            {{ icons.Info }}
-                        </span>
-                    </tooltip>
-                </div>
-                <input id="estimated-time" type="number" [(ngModel)]="settings.estimatedDeliveryTimeInMinutes"
-                    (change)="handleOnUpdate()"
-                    class="mt-4 sm:mt-0 w-32 px-2 py-1 border border-gray-300 rounded-md focus:ring-bg-primary focus:border-bg-primary text-gray-700" />
-            </div>
+                    <!-- Estimated delivery time -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
+                        <div class="flex items-center space-x-3">
+                            <label for="estimated-time" class="text-lg font-medium text-gray-700">
+                                Tempo estimado de entrega (minutos)
+                            </label>
+                            <tooltip text="Tempo médio estimado para a entrega dos pedidos.">
+                                <span class="material-symbols-outlined w-5 h-5 text-gray-400">
+                                    {{ icons.Info }}
+                                </span>
+                            </tooltip>
+                        </div>
+                        <input id="estimated-time" type="number" [(ngModel)]="settings.estimatedDeliveryTimeInMinutes"
+                            (change)="handleOnUpdate()"
+                            class="mt-4 sm:mt-0 w-32 px-2 py-1 border border-gray-300 rounded-md focus:ring-bg-primary focus:border-bg-primary text-gray-700" />
+                    </div>
 
-            <!-- Delivery Fee -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <label for="delivery-fee" class="text-lg font-medium text-gray-700">
-                        Taxa de Entrega (R$)
-                    </label>
-                    <tooltip text="Valor cobrado pela entrega dos pedidos.">
-                        <span class="material-symbols-outlined w-5 h-5 text-gray-400">
-                            {{ icons.Info }}
-                        </span>
-                    </tooltip>
+                    <!-- Delivery Fee -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <label for="delivery-fee" class="text-lg font-medium text-gray-700">
+                                Taxa de Entrega (R$)
+                            </label>
+                            <tooltip text="Valor cobrado pela entrega dos pedidos.">
+                                <span class="material-symbols-outlined w-5 h-5 text-gray-400">
+                                    {{ icons.Info }}
+                                </span>
+                            </tooltip>
+                        </div>
+                        <input id="delivery-fee" type="number" step="0.01" [(ngModel)]="settings.deliveryFee"
+                            (change)="handleOnUpdate()"
+                            class="mt-4 sm:mt-0 w-32 px-2 py-1 border border-gray-300 rounded-md focus:ring-bg-primary focus:border-bg-primary text-gray-700" />
+                    </div>
                 </div>
-                <input id="delivery-fee" type="number" step="0.01" [(ngModel)]="settings.deliveryFee"
-                    (change)="handleOnUpdate()"
-                    class="mt-4 sm:mt-0 w-32 px-2 py-1 border border-gray-300 rounded-md focus:ring-bg-primary focus:border-bg-primary text-gray-700" />
             </div>
-        </div>
-    </div>
-</administrator-default-layout>
+        </administrator-default-layout>
+    </authorized>
+</authorize-view>

@@ -6,16 +6,20 @@ import { TooltipComponent } from "../../components/tooltip/tooltip.component";
 import { Icons } from '../../common/enums/icons.enum';
 import { StorageConstants } from '../../common/storage-constants';
 import { AdministratorDefaultLayoutComponent } from "../../layout/administrator-default-layout/administrator-default-layout.component";
+import { AuthorizeViewComponent } from "../../modules/authorization/components/authorize-view/authorize-view.component";
+import { AuthorizedComponent } from "../../modules/authorization/components/authorized/authorized.component";
 
 @Component({
     selector: 'system-settings-page',
     standalone: true,
+    templateUrl: './system-settings-page.component.html',
     imports: [
         FormsModule,
         TooltipComponent,
-        AdministratorDefaultLayoutComponent
-    ],
-    templateUrl: './system-settings-page.component.html'
+        AdministratorDefaultLayoutComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+    ]
 })
 export class SystemSettingsPageComponent implements OnInit {
     private readonly settingsService: SettingsService;
