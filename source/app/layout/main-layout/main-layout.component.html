@@ -1,20 +1,16 @@
-<!--
-    the standard layout (<main>) has been duplicated and adapted specifically for administrators,
-    with margins (`ml-20` and `pl-6`) added to compensate for the space taken up by the fixed sidebar.
-    this ensures that the main content is not overlapped or misaligned in relation to the side navigation.
-    A separate layout was chosen to avoid direct changes to the main layout shared between other roles (such as “Customer”).
--->
 <authorize-view [roles]="['Administrator']">
     <authorized>
-        <main class="bg-white h-full pb-20">
+        <administrator-default-layout>
             <ng-content></ng-content>
-        </main>
+        </administrator-default-layout>
     </authorized>
 </authorize-view>
 
-<main class="bg-white h-full">
-    <ng-content></ng-content>
-</main>
+<authorize-view [roles]="['Customer']">
+    <authorized>
+        <customer-default-layout>
+            <ng-content></ng-content>
+        </customer-default-layout>
+    </authorized>
 
-<recommendation-fab />
-<navigation />
+</authorize-view>
