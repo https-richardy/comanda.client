@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogService } from '../../../../services/dialog.service';
 import { Icons } from '../../../../common/enums/icons.enum';
-import { MainLayoutComponent } from "../../../../layout/main-layout/main-layout.component";
 import { ChangeDetectorRef } from '@angular/core';
 import { AdditionalService } from '../../../../services/additional.service';
 import { AdditionalCreationFormComponent } from './forms/additonals-creation-form/additionals-creation-form.component';
 import { Additional } from '../../../../models/additional.model';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { AdditionalEditingFormComponent } from './forms/additionals-editing-form/additionals-editing-form.component';
+import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
 
 
 @Component({
     selector: 'app-additionals-management-page',
     standalone: true,
-    imports: [CommonModule, MainLayoutComponent],
+    imports: [
+        CommonModule,
+        AdministratorDefaultLayoutComponent
+    ],
     templateUrl: './additionals-management-page.component.html'
 })
 export class AdditionalsManagementPageComponent implements OnInit {
