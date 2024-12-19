@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NavigationComponent } from "../navigation/navigation.component";
-import { AiRecommendationFabComponent } from "../../components/ai-recommendation-fab/ai-recommendation-fab.component";
 import { AuthorizeViewComponent } from "../../modules/authorization/components/authorize-view/authorize-view.component";
 import { AuthorizedComponent } from "../../modules/authorization/components/authorized/authorized.component";
 import { AdministratorDefaultLayoutComponent } from "../administrator-default-layout/administrator-default-layout.component";
