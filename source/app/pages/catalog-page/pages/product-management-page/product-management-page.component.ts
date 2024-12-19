@@ -9,14 +9,18 @@ import { ConfirmationDialogComponent } from '../../../../components/dialogs/conf
 import { Product } from '../../../../models/product.model';
 import { ProductImageUploadFormComponent } from './forms/product-image-upload-form/product-image-upload-form.component';
 import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
+import { AuthorizeViewComponent } from "../../../../modules/authorization/components/authorize-view/authorize-view.component";
+import { AuthorizedComponent } from "../../../../modules/authorization/components/authorized/authorized.component";
 
 @Component({
     selector: 'app-product-management-page',
     standalone: true,
     imports: [
         CommonModule,
-        AdministratorDefaultLayoutComponent
-    ],
+        AdministratorDefaultLayoutComponent,
+        AuthorizeViewComponent,
+        AuthorizedComponent
+],
     templateUrl: './product-management-page.component.html'
 })
 export class ProductManagementPageComponent implements OnInit {
