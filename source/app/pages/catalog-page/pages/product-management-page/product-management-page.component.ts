@@ -2,18 +2,21 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogService } from '../../../../services/dialog.service';
 import { Icons } from '../../../../common/enums/icons.enum';
-import { MainLayoutComponent } from "../../../../layout/main-layout/main-layout.component";
 import { ProductService } from '../../../../services/product.service';
 import { ProductCreationFormComponent } from './forms/product-creation-form/product-creation-form.component';
 import { ProductEditingFormComponent } from './forms/product-editing-form/product-editing-form.component';
 import { ConfirmationDialogComponent } from '../../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { Product } from '../../../../models/product.model';
 import { ProductImageUploadFormComponent } from './forms/product-image-upload-form/product-image-upload-form.component';
+import { AdministratorDefaultLayoutComponent } from "../../../../layout/administrator-default-layout/administrator-default-layout.component";
 
 @Component({
     selector: 'app-product-management-page',
     standalone: true,
-    imports: [CommonModule, MainLayoutComponent],
+    imports: [
+        CommonModule,
+        AdministratorDefaultLayoutComponent
+    ],
     templateUrl: './product-management-page.component.html'
 })
 export class ProductManagementPageComponent implements OnInit {
