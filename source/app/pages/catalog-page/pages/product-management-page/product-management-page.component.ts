@@ -108,9 +108,24 @@ export class ProductManagementPageComponent implements OnInit {
             closeOnEscape: true,
             showCloseButton: false,
             data: {
-                title: 'Excluir Produto',
+                title: `Excluir ${product.title} (${product.id})?`,
                 message: 'Você tem certeza que deseja excluir este produto? Esta ação não pode ser desfeita.'
             }
+        });
+
+        dialogRef.instance.onConfirm.subscribe(() => {
+            this.productService.deleteProduct(product).subscribe(() => {
+                this.productService.getProducts().subscribe((products) => {
+                    this.products = products;
+                    this.changeDetector.detectChanges();
+                });
+            });
+
+            this.dialogService.close();
+        });
+
+        dialogRef.instance.onCancel.subscribe(() => {
+            this.dialogService.close();
         });
     }
 }
