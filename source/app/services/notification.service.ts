@@ -25,7 +25,6 @@ export class NotificationService {
         this.startConnection();
 
         this.hubConnection.on("receiveNotification", (notification: Notification) => {
-            console.log(notification);
             this.playNotificationSound();
 
             this.snackbarService.open("Novo pedido!", notification.message, {
