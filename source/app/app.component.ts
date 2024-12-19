@@ -40,6 +40,7 @@ export class AppComponent {
                         .subscribe((response) => {
                             if (response.isSuccess && response.data) {
                                 localStorage.setItem(StorageConstants.AuthenticationToken, response.data.token);
+                                window.location.reload();
                             }
                         });
                 }
