@@ -3,14 +3,18 @@ import { SettingsService } from '../../services/settings.service';
 import { Settings } from '../../models/settings.model';
 import { FormsModule } from '@angular/forms';
 import { TooltipComponent } from "../../components/tooltip/tooltip.component";
-import { MainLayoutComponent } from "../../layout/main-layout/main-layout.component";
 import { Icons } from '../../common/enums/icons.enum';
 import { StorageConstants } from '../../common/storage-constants';
+import { AdministratorDefaultLayoutComponent } from "../../layout/administrator-default-layout/administrator-default-layout.component";
 
 @Component({
     selector: 'system-settings-page',
     standalone: true,
-    imports: [FormsModule, TooltipComponent, MainLayoutComponent],
+    imports: [
+        FormsModule,
+        TooltipComponent,
+        AdministratorDefaultLayoutComponent
+    ],
     templateUrl: './system-settings-page.component.html'
 })
 export class SystemSettingsPageComponent implements OnInit {
