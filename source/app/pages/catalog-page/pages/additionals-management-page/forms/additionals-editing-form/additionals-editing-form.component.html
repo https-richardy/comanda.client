@@ -6,7 +6,7 @@
         <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-red-500 text-sm mt-2">
             <div *ngIf="form.get('name')?.hasError('required')">O adicional precisa de um nome.</div>
             <div *ngIf="form.get('name')?.hasError('minlength')">O adicional precisa ter no mínimo 3 caracteres.</div>
-            <div *ngIf="form.get('name')?.hasError('maxLength')">O adicional pode ter no máximo 50 caracteres.</div>
+            <div *ngIf="form.get('name')?.hasError('maxlength')">O adicional pode ter no máximo 50 caracteres.</div>
         </div>
     </div>
 
