@@ -30,7 +30,7 @@ export class IngredientEditingFormComponent implements OnInit {
         this.ingredientService = ingredientService;
 
         this.form = this.formBuilder.group({
-            name: ["", [Validators.required, Validators.minLength(3)]]
+            name: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
         });
     }
 
