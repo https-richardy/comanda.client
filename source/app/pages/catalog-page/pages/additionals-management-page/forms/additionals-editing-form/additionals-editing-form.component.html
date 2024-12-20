@@ -6,16 +6,18 @@
         <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-red-500 text-sm mt-2">
             <div *ngIf="form.get('name')?.hasError('required')">O adicional precisa de um nome.</div>
             <div *ngIf="form.get('name')?.hasError('minlength')">O adicional precisa ter no mínimo 3 caracteres.</div>
+            <div *ngIf="form.get('name')?.hasError('maxLength')">O adicional pode ter no máximo 50 caracteres.</div>
         </div>
     </div>
 
     <div class="mb-4">
         <label for="price" class="block text-sm font-medium text-gray-700">Preço (R$)</label>
-        <input id="price" formControlName="price" type="number"
+        <input id="price" formControlName="price" type="number" min="0.01" max="1000"
             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ee254b]" />
         <div *ngIf="form.get('price')?.touched && form.get('price')?.invalid" class="text-red-500 text-sm mt-2">
             <div *ngIf="form.get('price')?.hasError('required')">O adicional precisa de um preço.</div>
             <div *ngIf="form.get('price')?.hasError('min')">O adicional precisa de um preço válido.</div>
+            <div *ngIf="form.get('price')?.hasError('max')">O adicional pode ter no máximo R$1.000,00.</div>
         </div>
     </div>
 
