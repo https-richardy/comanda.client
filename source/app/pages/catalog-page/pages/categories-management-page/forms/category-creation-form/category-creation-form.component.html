@@ -6,6 +6,7 @@
         <div *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="text-red-500 text-sm mt-2">
             <div *ngIf="form.get('title')?.hasError('required')">A categoria precisa de um nome.</div>
             <div *ngIf="form.get('title')?.hasError('minlength')">A categoria precisa ter no mínimo 3 caracteres.</div>
+            <div *ngIf="form.get('title')?.hasError('maxlength')">A categoria pode ter no máximo 50 caracteres.</div>
         </div>
     </div>
 

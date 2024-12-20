@@ -28,7 +28,7 @@ export class CategoryCreationFormComponent {
         this.categoryService = categoryService;
 
         this.form = this.formBuilder.group({
-            title: ["", [Validators.required, Validators.minLength(3)]]
+            title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
         });
     }
 
