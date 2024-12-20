@@ -6,6 +6,7 @@
         <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-red-500 text-sm mt-2">
             <div *ngIf="form.get('name')?.hasError('required')">O ingrediente precisa de um nome.</div>
             <div *ngIf="form.get('name')?.hasError('minlength')">O ingrediente precisa ter no mínimo 3 caracteres.</div>
+            <div *ngIf="form.get('name')?.hasError('maxlength')">O ingrediente pode ter no máximo 50 caracteres.</div>
         </div>
     </div>
 
