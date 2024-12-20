@@ -46,9 +46,9 @@ export class ProductCreationFormComponent implements OnInit {
         this.categoryService = categoryService;
 
         this.form = this.formBuilder.group({
-            title: ["", [Validators.required, Validators.minLength(3)]],
-            description: ["", [Validators.required, Validators.maxLength(255)]],
-            price: [0, [Validators.required, Validators.min(0.01)]],
+            title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+            description: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(120)]],
+            price: [0, [Validators.required, Validators.min(0.01), Validators.max(1000)]],
             categoryId: [null, [Validators.required]],
             ingredients: this.formBuilder.array([]),
         });
