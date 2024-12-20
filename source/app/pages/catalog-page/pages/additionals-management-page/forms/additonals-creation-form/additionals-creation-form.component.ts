@@ -37,8 +37,8 @@ export class AdditionalCreationFormComponent implements OnInit {
         this.additionalService = additionalService;
 
         this.form = this.formBuilder.group({
-            name: ["", [Validators.required, Validators.minLength(3)]],
-            price: [0, [Validators.required, Validators.min(0.01)]],
+            name: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+            price: [0, [Validators.required, Validators.min(0.01), Validators.max(1000)]],
             categoryId: [null, [Validators.required]]
         });
     }
