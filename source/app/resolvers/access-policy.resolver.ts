@@ -17,7 +17,7 @@ export class AccessPolicyResolver implements Resolve<void> {
         var claimsIdentity = authenticationState.user;
 
         if (authenticationState.isAuthenticated() && claimsIdentity?.hasRole("Administrator")) {
-            this.routeManager.navigate(["/catalog"]);
+            this.routeManager.navigate(["/dashboard"]);
         }
 
         if (authenticationState.isAuthenticated() && claimsIdentity?.hasRole("Customer")) {
