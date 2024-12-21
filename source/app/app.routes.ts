@@ -11,12 +11,28 @@ import { IngredientManagementPageComponent } from './pages/catalog-page/pages/in
 import { AdditionalsManagementPageComponent } from './pages/catalog-page/pages/additionals-management-page/additionals-management-page.component';
 import { ProductManagementPageComponent } from './pages/catalog-page/pages/product-management-page/product-management-page.component';
 import { AdministratorAccessPolicy } from './guards/administrator.guard';
+import { CustomerAccessPolicy } from './guards/customer.guard';
 
 export const routes: Routes = [
     { path: "", component: HomePageComponent },
-    { path: "profile", component: ProfilePageComponent },
-    { path: "cart", component: CartPageComponent },
-    { path: "checkout/success", component: SuccessPageComponent },
+
+    {
+        path: "profile",
+        canActivate: [ CustomerAccessPolicy ],
+        component: ProfilePageComponent
+    },
+
+    {
+        path: "cart",
+        canActivate: [ CustomerAccessPolicy ],
+        component: CartPageComponent
+    },
+
+    {
+        path: "checkout/success",
+        canActivate: [ CustomerAccessPolicy ],
+        component: SuccessPageComponent
+    },
 
     {
         path: "catalog",
