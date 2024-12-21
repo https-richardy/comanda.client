@@ -108,7 +108,7 @@ export class ProductManagementPageComponent implements OnInit {
             closeOnEscape: true,
             showCloseButton: false,
             data: {
-                title: `Excluir ${product.title} (${product.id})?`,
+                title: `Excluir ${product.title}?`,
                 message: 'Você tem certeza que deseja excluir este produto? Esta ação não pode ser desfeita.'
             }
         });
