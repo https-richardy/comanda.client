@@ -13,6 +13,7 @@ import { ProductManagementPageComponent } from './pages/catalog-page/pages/produ
 import { AdministratorAccessPolicy } from './guards/administrator.guard';
 import { CustomerAccessPolicy } from './guards/customer.guard';
 import { AccessPolicyResolver } from './resolvers/access-policy.resolver';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
 export const routes: Routes = [
     {
@@ -81,5 +82,11 @@ export const routes: Routes = [
         path: "settings",
         canActivate: [ AdministratorAccessPolicy ],
         component: SystemSettingsPageComponent,
+    },
+
+    {
+        path: "dashboard",
+        canActivate: [ AdministratorAccessPolicy ],
+        component: DashboardPageComponent
     }
 ];
