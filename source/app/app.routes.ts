@@ -12,9 +12,22 @@ import { AdditionalsManagementPageComponent } from './pages/catalog-page/pages/a
 import { ProductManagementPageComponent } from './pages/catalog-page/pages/product-management-page/product-management-page.component';
 import { AdministratorAccessPolicy } from './guards/administrator.guard';
 import { CustomerAccessPolicy } from './guards/customer.guard';
+import { AccessPolicyResolver } from './resolvers/access-policy.resolver';
 
 export const routes: Routes = [
-    { path: "", component: HomePageComponent },
+    {
+        path: "",
+        resolve: { target: AccessPolicyResolver },
+        children: [
+            { path: "", component: HomePageComponent },
+            { path: "", component: CatalogPageComponent }
+        ]
+    },
+
+    {
+        path: "home",
+        component: HomePageComponent 
+    },
 
     {
         path: "profile",
