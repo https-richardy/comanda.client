@@ -10,16 +10,47 @@ import { SystemSettingsPageComponent } from './pages/system-settings-page/system
 import { IngredientManagementPageComponent } from './pages/catalog-page/pages/ingredient-management-page/ingredient-management-page.component';
 import { AdditionalsManagementPageComponent } from './pages/catalog-page/pages/additionals-management-page/additionals-management-page.component';
 import { ProductManagementPageComponent } from './pages/catalog-page/pages/product-management-page/product-management-page.component';
+import { AdministratorAccessPolicy } from './guards/administrator.guard';
 
 export const routes: Routes = [
     { path: "", component: HomePageComponent },
     { path: "profile", component: ProfilePageComponent },
     { path: "cart", component: CartPageComponent },
     { path: "checkout/success", component: SuccessPageComponent },
-    { path: "catalog", component: CatalogPageComponent },
-    { path: "catalog/categories", component: CategoriesManagementPageComponent },
-    { path: "catalog/ingredients", component: IngredientManagementPageComponent },
-    { path: "catalog/additionals", component: AdditionalsManagementPageComponent },
-    { path: "catalog/products", component: ProductManagementPageComponent },
-    { path: "settings", component: SystemSettingsPageComponent }
+
+    {
+        path: "catalog",
+        canActivate: [ AdministratorAccessPolicy ],
+        component: CatalogPageComponent
+    },
+
+    {
+        path: "catalog/categories",
+        canActivate: [ AdministratorAccessPolicy ],
+        component: CategoriesManagementPageComponent,
+    },
+
+    {
+        path: "catalog/ingredients",
+        canActivate: [ AdministratorAccessPolicy ],
+        component: IngredientManagementPageComponent,
+    },
+
+    {
+        path: "catalog/additionals",
+        canActivate: [ AdministratorAccessPolicy ],
+        component: AdditionalsManagementPageComponent,
+    },
+
+    {
+        path: "catalog/products",
+        canActivate: [ AdministratorAccessPolicy ],
+        component: ProductManagementPageComponent,
+    },
+
+    {
+        path: "settings",
+        canActivate: [ AdministratorAccessPolicy ],
+        component: SystemSettingsPageComponent,
+    }
 ];
