@@ -12,5 +12,9 @@ export enum Icons {
     CheckCircle = "check_circle",
     TrendingUp = "trending_up",
     BarChart = "bar_chart",
-    Cancel = "cancel"
+    Cancel = "cancel",
+    Mail = "mail",
+    Lock = "lock",
+    Visibility = "visibility",
+    VisibilityOff = "visibility_off"
 }
