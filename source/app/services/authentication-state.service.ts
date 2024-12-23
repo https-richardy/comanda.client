@@ -31,12 +31,6 @@ export class AuthenticationStateService {
             next: (response) => {
                 if (response.token) {
                     localStorage.setItem(StorageConstants.AuthenticationToken, response.token);
-                    this.snackbar.show("Login bem-sucedido", "Você está autenticado!", {
-                        type: SnackbarType.Info,
-                        position: SnackbarPosition.BottomRight,
-                        duration: 3
-                    });
-
                     this.routerManager.navigate(["/"]).then(() => { });
                 }
             },
