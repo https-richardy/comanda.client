@@ -6,14 +6,22 @@ import { SnackbarService } from "./snackbar.service";
 import { SnackbarType } from "../common/enums/snackbar-type.enum";
 import { SnackbarPosition } from "../common/enums/snackbar-position.enum";
 import { Icons } from "../common/enums/icons.enum";
+import { Router } from "@angular/router";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationStateService {
     private readonly authenticationService: AuthenticationService;
     private readonly snackbar: SnackbarService;
+    private readonly routerManager: Router;
 
-    public constructor(authenticationService: AuthenticationService, snackbar: SnackbarService) {
+    public constructor(
+        authenticationService: AuthenticationService,
+        snackbar: SnackbarService,
+        routerManager: Router
+    ) {
         this.authenticationService = authenticationService;
+        this.snackbar = snackbar;
+        this.routerManager = routerManager;
         this.snackbar = snackbar;
     }
 
@@ -28,6 +36,8 @@ export class AuthenticationStateService {
                         position: SnackbarPosition.BottomRight,
                         duration: 3
                     });
+
+                    this.routerManager.navigate(["/"]).then(() => { });
                 }
             },
             error: (error) => {
