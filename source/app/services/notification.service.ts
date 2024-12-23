@@ -27,7 +27,7 @@ export class NotificationService {
         this.hubConnection.on("receiveNotification", (notification: Notification) => {
             this.playNotificationSound();
 
-            this.snackbarService.open("Novo pedido!", notification.message, {
+            this.snackbarService.show("Novo pedido!", notification.message, {
                 type: SnackbarType.Error,
                 position: SnackbarPosition.BottomRight,
                 duration: 3

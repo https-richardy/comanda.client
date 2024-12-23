@@ -15,7 +15,7 @@ export class SnackbarService {
         this.injector = injector;
     }
 
-    public open(
+    public show(
         title: string,
         text: string,
         options: {
