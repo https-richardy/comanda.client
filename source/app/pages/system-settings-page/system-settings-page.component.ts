@@ -8,6 +8,9 @@ import { StorageConstants } from '../../common/storage-constants';
 import { AdministratorDefaultLayoutComponent } from "../../layout/administrator-default-layout/administrator-default-layout.component";
 import { AuthorizeViewComponent } from "../../modules/authorization/components/authorize-view/authorize-view.component";
 import { AuthorizedComponent } from "../../modules/authorization/components/authorized/authorized.component";
+import { SnackbarService } from '../../services/snackbar.service';
+import { SnackbarPosition } from '../../common/enums/snackbar-position.enum';
+import { SnackbarType } from '../../common/enums/snackbar-type.enum';
 
 @Component({
     selector: 'system-settings-page',
@@ -23,13 +26,15 @@ import { AuthorizedComponent } from "../../modules/authorization/components/auth
 })
 export class SystemSettingsPageComponent implements OnInit {
     private readonly settingsService: SettingsService;
+    private readonly snackbar: SnackbarService;
 
     public icons = Icons;
     public settings = {  } as Settings;
     private cachedSettings = {  } as Settings;
 
-    public constructor(settingsService: SettingsService) {
+    public constructor(settingsService: SettingsService, snackbar: SnackbarService) {
         this.settingsService = settingsService;
+        this.snackbar = snackbar;
     }
 
     public ngOnInit(): void {
@@ -59,11 +64,19 @@ export class SystemSettingsPageComponent implements OnInit {
                 this.cachedSettings = { ...this.settings };
                 this.updateLocalStorage();
 
-                alert('Configurações salvas com sucesso!');
+                this.snackbar.show("Configurações salva", "Configurações salvas com sucesso!", {
+                    position: SnackbarPosition.BottomRight,
+                    icon: Icons.Info,
+                    type: SnackbarType.Info
+                });
             });
         }
         else {
-            alert('Nenhuma alteração foi feita nas configurações.');
+            this.snackbar.show("Sem alterações", "Não houve alterações na configuração", {
+                position: SnackbarPosition.BottomRight,
+                icon: Icons.Info,
+                type: SnackbarType.Info
+            });
         }
     }
 
