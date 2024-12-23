@@ -17,5 +17,6 @@ export enum Icons {
     Lock = "lock",
     Visibility = "visibility",
     VisibilityOff = "visibility_off",
-    ArrowBack = "arrow_back"
+    ArrowBack = "arrow_back",
+    Person = "person"
 }
