@@ -16,5 +16,6 @@ export enum Icons {
     Mail = "mail",
     Lock = "lock",
     Visibility = "visibility",
-    VisibilityOff = "visibility_off"
+    VisibilityOff = "visibility_off",
+    ArrowBack = "arrow_back"
 }
