@@ -1,0 +1,99 @@
+<div class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-md transition-transform duration-300 ease-in-out"
+        [ngClass]="step === 1 ? 'scale-105' : 'scale-100'">
+        <div class="rounded-lg overflow-hidden">
+            <div class="p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent"
+                    style="user-select: none;">
+                    Vamos criar sua conta
+                </h2>
+                <form [formGroup]="form" (ngSubmit)="step === 1 ? handleBaseInfoSubmit() : handleSignup()"
+                    class="space-y-6">
+                    <div *ngIf="step === 1" class="space-y-2">
+                        <label for="name" class="text-sm font-medium text-gray-700"
+                            style="user-select: none;">Nome</label>
+                        <div class="relative">
+                            <input id="name" type="text" formControlName="name" placeholder="Seu nome"
+                                class="w-full pl-12 pr-4 py-3 border-2 rounded-lg text-gray-700 focus:border-[#ee254b] focus:ring focus:ring-[#ee254b] focus:ring-opacity-50 transition-all duration-300" />
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                {{ icons.Person }}
+                            </span>
+                        </div>
+                        <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+                            class="text-sm text-red-500">
+                            <p *ngIf="form.get('name')?.hasError('required')">Nome é obrigatório.</p>
+                            <p *ngIf="form.get('name')?.hasError('minlength')">Nome deve ter pelo menos 3 caracteres.
+                            </p>
+                            <p *ngIf="form.get('name')?.hasError('maxlength')">Nome não pode ter mais de 100 caracteres.
+                            </p>
+                        </div>
+
+                        <label for="email" class="text-sm font-medium text-gray-700"
+                            style="user-select: none;">Email</label>
+                        <div class="relative">
+                            <input id="email" type="email" formControlName="email" placeholder="seu@email.com"
+                                class="w-full pl-12 pr-4 py-3 border-2 rounded-lg text-gray-700 focus:border-[#ee254b] focus:ring focus:ring-[#ee254b] focus:ring-opacity-50 transition-all duration-300" />
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                {{ icons.Mail }}
+                            </span>
+                        </div>
+                        <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+                            class="text-sm text-red-500">
+                            <p *ngIf="form.get('email')?.hasError('required')">Email é obrigatório.</p>
+                            <p *ngIf="form.get('email')?.hasError('email')">Insira um email válido.</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="step === 2" class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <button type="button" (click)="step = 1" class="text-primary hover:underline font-medium">
+                                <span class="material-symbols-outlined hover:text-gray-300">
+                                    {{ icons.ArrowBack }}
+                                </span>
+                            </button>
+                        </div>
+
+                        <label for="password" class="text-sm font-medium text-gray-700"
+                            style="user-select: none;">Senha</label>
+                        <div class="relative">
+                            <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                                placeholder="Sua senha"
+                                class="w-full pl-12 pr-12 py-3 border-2 rounded-lg text-gray-700 focus:border-[#ee254b] focus:ring focus:ring-[#ee254b] focus:ring-opacity-50 transition-all duration-300" />
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                {{ icons.Lock }}
+                            </span>
+                            <button type="button" (click)="togglePasswordVisibility()"
+                                class="absolute right-6 top-1/2 transform -translate-y-1/2 mt-1 text-gray-400 hover:text-gray-600 focus:outline-none">
+                                <span class="material-symbols-outlined">
+                                    {{ showPassword ? icons.VisibilityOff : icons.Visibility }}
+                                </span>
+                            </button>
+                        </div>
+                        <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
+                            class="text-sm text-red-500">
+                            <p *ngIf="form.get('password')?.hasError('required')">Senha é obrigatória.</p>
+                            <p *ngIf="form.get('password')?.hasError('pattern')">A senha deve conter uma letra
+                                maiúscula, uma
+                                minúscula, um número e um caractere especial.</p>
+                            <p *ngIf="form.get('password')?.hasError('minlength')">A senha deve ter pelo menos 8
+                                caracteres.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-[#d61e41] text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#ee254b] focus:ring-opacity-50">
+                        {{ step === 1 ? 'Próximo' : 'Cadastrar' }}
+                    </button>
+                </form>
+            </div>
+            <div class="p-6 border-t">
+                <p class="text-sm text-gray-600 text-center" style="user-select: none;">
+                    Já tem uma conta? <a href="login" class="text-primary hover:underline font-medium">Entre agora!</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
