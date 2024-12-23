@@ -14,6 +14,7 @@ import { AdministratorAccessPolicy } from './guards/administrator.guard';
 import { CustomerAccessPolicy } from './guards/customer.guard';
 import { AccessPolicyResolver } from './resolvers/access-policy.resolver';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,11 @@ export const routes: Routes = [
             { path: "", component: HomePageComponent },
             { path: "", component: CatalogPageComponent }
         ]
+    },
+
+    {
+        path: "login",
+        component: LoginFormComponent
     },
 
     {
