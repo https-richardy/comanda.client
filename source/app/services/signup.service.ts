@@ -45,7 +45,7 @@ export class SignupService {
                         });
 
                         this.authenticationStateService.login(credentials);
-                        this.routerManager.navigate(["/"]);
+                        this.routerManager.navigate(["/"]).then(() => { });
 
                         return;
                     }
