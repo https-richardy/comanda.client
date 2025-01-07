@@ -6,15 +6,24 @@
     </div>
 
     <div class="flex items-center space-x-2">
-        <button class="btn-outline">Detalhes</button>
-        <button class="btn-outline">
+        <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Detalhes</button>
+        <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700
+                       flex items-center hover:bg-gray-100
+                       focus:outline-none focus:ring-2
+                       focus:ring-gray-300">
             Status
             <span class="material-symbols-outlined ml-2 text-gray-700">
-                arrow_drop_down
+                {{ icons.ArrowDropDown }}
             </span>
         </button>
-        <button class="btn-destructive" (click)="cancelOrder()">
-            <span class="material-symbols-outlined">cancel</span>
+
+        <button class="px-4 py-2 bg-red-500 text-white rounded-lg
+                       flex items-center hover:bg-red-600
+                       focus:outline-none focus:ring-2
+                       focus:ring-red-300" (click)="cancelOrder()">
+            <span class="material-symbols-outlined">
+                {{ icons.Cancel }}
+            </span>
         </button>
     </div>
 </div>
