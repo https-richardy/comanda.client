@@ -1,7 +1,7 @@
 <div class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center">
     <div>
         <h2 class="font-semibold">{{ order.customer }}</h2>
-        <p class="text-sm text-gray-500">Pedido #{{ order.id }} - {{ order.date.getTime() }}</p>
+        <p class="text-sm text-gray-500">Pedido #{{ order.id }} - {{ order.date | date: 'shortTime' }}</p>
         <status-badge [status]="order.status"></status-badge>
     </div>
 
