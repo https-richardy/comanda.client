@@ -35,7 +35,7 @@ export class OrderService {
         return this.httpClient.get<Response<Pagination<FormattedOrder>>>(this.baseAddress, { params: queryParameters })
             .pipe(
                 map((response) => {
-                    if (response.data && Array.isArray(response.data)) {
+                    if (response.data) {
                         return response.data.results;
                     }
 
