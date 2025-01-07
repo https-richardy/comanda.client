@@ -4,6 +4,7 @@ import { OrderService } from '../../../services/order.service';
 import { OrderStatus } from '../../../models/order-status.enum';
 import { CommonModule } from '@angular/common';
 import { StatusBadgeComponent } from '../status-badge/status-badge.component';
+import { Icons } from '../../../common/enums/icons.enum';
 
 @Component({
     selector: 'order-panel-item',
@@ -14,6 +15,8 @@ import { StatusBadgeComponent } from '../status-badge/status-badge.component';
 export class OrderPanelItemComponent {
     @Input()
     public order!: FormattedOrder;
+    public icons = Icons;
+
     private readonly orderService: OrderService;
 
     public constructor(orderService: OrderService) {
