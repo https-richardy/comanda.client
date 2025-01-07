@@ -13,7 +13,7 @@ export class StatusBadgeComponent {
     public status!: OrderStatus;
 
     public getStatusClass(): string {
-        const classes: Record<OrderStatus, string> = {
+        var classes: Record<OrderStatus, string> = {
             [OrderStatus.Pending]: "bg-yellow-200 text-yellow-800",
             [OrderStatus.Confirmed]: "bg-blue-200 text-blue-800",
             [OrderStatus.InPreparation]: "bg-indigo-200 text-indigo-800",
@@ -25,5 +25,20 @@ export class StatusBadgeComponent {
         };
 
         return classes[this.status];
+    }
+
+    public getStatusText(): string {
+        var texts: Record<OrderStatus, string> = {
+            [OrderStatus.Pending]: "pendente",
+            [OrderStatus.Confirmed]: "confirmado",
+            [OrderStatus.InPreparation]: "preparando",
+            [OrderStatus.Shipped]: "em entrega",
+            [OrderStatus.Returned]: "devolvido",
+            [OrderStatus.Delivered]: "Entregue",
+            [OrderStatus.CancelledByCustomer]: "cancelado p/ cliente",
+            [OrderStatus.CancelledBySystem]: "cancelado p/ sistema"
+        };
+
+        return texts[this.status];
     }
 }
