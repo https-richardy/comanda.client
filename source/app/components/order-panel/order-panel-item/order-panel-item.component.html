@@ -1,0 +1,20 @@
+<div class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center">
+    <div>
+        <h2 class="font-semibold">{{ order.customer }}</h2>
+        <p class="text-sm text-gray-500">Pedido #{{ order.id }} - {{ order.date.getTime() }}</p>
+        <status-badge [status]="order.status"></status-badge>
+    </div>
+
+    <div class="flex items-center space-x-2">
+        <button class="btn-outline">Detalhes</button>
+        <button class="btn-outline">
+            Status
+            <span class="material-symbols-outlined ml-2 text-gray-700">
+                arrow_drop_down
+            </span>
+        </button>
+        <button class="btn-destructive" (click)="cancelOrder()">
+            <span class="material-symbols-outlined">cancel</span>
+        </button>
+    </div>
+</div>
