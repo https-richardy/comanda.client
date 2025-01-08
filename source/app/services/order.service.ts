@@ -6,6 +6,7 @@ import { map, Observable } from "rxjs";
 import { FormattedOrder } from "../payloads/responses/order-payloads/formatted-order.payload";
 import { Response } from "../payloads/responses/response";
 import { Pagination } from "../payloads/responses/pagination";
+import { ChangeOrderStatusRequest } from "../payloads/requests/order-payloads/change-order-status.payload";
 
 @Injectable({ providedIn: "root" })
 export class OrderService {
@@ -42,5 +43,15 @@ export class OrderService {
                     return [ ]
                 })
             )
+    }
+
+    public changeOrderStatus(request: ChangeOrderStatusRequest): Observable<void> {
+        return this.httpClient
+            .put<Response<null>>(`${this.baseAddress}/${request.orderId}/set-status`, request)
+            .pipe(
+                map(() => {
+                    return void 0;
+                })
+            );
     }
 }
