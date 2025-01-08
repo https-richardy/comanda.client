@@ -45,6 +45,15 @@ export class OrderService {
             )
     }
 
+    public cancelOrder(orderId: number): Observable<void> {
+        return this.httpClient.post(`${this.baseAddress}/${orderId}/cancel`, { })
+            .pipe(
+                map(() => {
+                    return void 0;
+                })
+            );
+    }
+
     public changeOrderStatus(request: ChangeOrderStatusRequest): Observable<void> {
         return this.httpClient
             .put<Response<null>>(`${this.baseAddress}/${request.orderId}/set-status`, request)
