@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OrderPanelItemComponent } from "./order-panel-item/order-panel-item.component";
 import { FormattedOrder } from '../../payloads/responses/order-payloads/formatted-order.payload';
 import { OrderService } from '../../services/order.service';
-import { OrderStatus } from '../../models/order-status.enum';
+import { NotificationService } from '../../services/notification.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'order-panel',
@@ -11,12 +12,16 @@ import { OrderStatus } from '../../models/order-status.enum';
     standalone: true,
     imports: [CommonModule, OrderPanelItemComponent],
 })
-export class OrderPanelComponent implements OnInit {
+export class OrderPanelComponent implements OnInit, OnDestroy {
     private readonly orderService: OrderService;
-    public orders: Array<FormattedOrder> = [ ];
+    private readonly notificationService: NotificationService;
 
-    public constructor(orderService: OrderService) {
+    public orders: Array<FormattedOrder> = [ ];
+    private notificationSubscription!: Subscription;
+
+    public constructor(orderService: OrderService, notificatonService: NotificationService) {
         this.orderService = orderService;
+        this.notificationService = notificatonService;
     }
 
     public ngOnInit(): void {
@@ -29,5 +34,15 @@ export class OrderPanelComponent implements OnInit {
             .subscribe((orders) => {
                 this.orders = orders;
         });
+
+        this.notificationSubscription = this.notificationService
+            .notificationReceived$
+            .subscribe(() => {
+                this.fetchOrders();
+            });
+    }
+
+    public ngOnDestroy(): void {
+        this.notificationSubscription?.unsubscribe();
     }
 }
