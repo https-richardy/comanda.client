@@ -6,12 +6,16 @@ import { Notification } from '../payloads/responses/notification';
 import { SnackbarService } from './snackbar.service';
 import { SnackbarType } from '../common/enums/snackbar-type.enum';
 import { SnackbarPosition } from '../common/enums/snackbar-position.enum';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
     private readonly snackbarService: SnackbarService;
     private readonly hubConnection: signalR.HubConnection
     private readonly audio = new Audio("assets/sounds/notification.mp3");
+
+    private readonly notificationReceivedSubject = new Subject<void>();
+    public readonly notificationReceived$ = this.notificationReceivedSubject.asObservable();
 
     public constructor(snackbarService: SnackbarService) {
         this.snackbarService = snackbarService;
@@ -32,6 +36,8 @@ export class NotificationService {
                 position: SnackbarPosition.BottomRight,
                 duration: 3
             });
+
+            this.notificationReceivedSubject.next();
         });
     }
 
