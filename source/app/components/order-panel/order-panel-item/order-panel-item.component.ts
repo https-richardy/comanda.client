@@ -35,7 +35,9 @@ export class OrderPanelItemComponent {
 
     public cancelOrder(): void {
         this.order.status = OrderStatus.CancelledBySystem;
-        /* write the logic to update the information on the server */
+        this.orderService
+            .cancelOrder(this.order.id)
+            .subscribe()
     }
 
     // I think this status transition logic should be in the order service, right? 
