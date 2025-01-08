@@ -27,7 +27,10 @@ export class OrderPanelItemComponent {
     public updateStatus(newStatus: OrderStatus): void {
         this.order.status = newStatus;
         this.showDropdown = true;
-        /* write the logic to update the information on the server */
+
+        this.orderService
+            .changeOrderStatus({ orderId: this.order.id, status: newStatus })
+            .subscribe();
     }
 
     public cancelOrder(): void {
