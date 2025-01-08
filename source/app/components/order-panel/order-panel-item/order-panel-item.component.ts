@@ -35,6 +35,8 @@ export class OrderPanelItemComponent {
         /* write the logic to update the information on the server */
     }
 
+    // I think this status transition logic should be in the order service, right? 
+    // Because, apparently, the components aren't designed for that... But anyway, I'm just testing my state control skills here.
     public getAllowedStatuses(): OrderStatus[] {
         var statusOrder: OrderStatus[][] = [
             [OrderStatus.Pending],
