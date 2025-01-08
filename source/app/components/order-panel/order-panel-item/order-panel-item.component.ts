@@ -16,6 +16,7 @@ export class OrderPanelItemComponent {
     @Input()
     public order!: FormattedOrder;
     public icons = Icons;
+    public showDropdown = false;
 
     private readonly orderService: OrderService;
 
@@ -25,11 +26,49 @@ export class OrderPanelItemComponent {
 
     public updateStatus(newStatus: OrderStatus): void {
         this.order.status = newStatus;
+        this.showDropdown = true;
         /* write the logic to update the information on the server */
     }
 
     public cancelOrder(): void {
         this.order.status = OrderStatus.CancelledBySystem;
         /* write the logic to update the information on the server */
+    }
+
+    public getAllowedStatuses(): OrderStatus[] {
+        var statusOrder: OrderStatus[][] = [
+            [OrderStatus.Pending],
+            [OrderStatus.Confirmed],
+            [OrderStatus.InPreparation],
+            [OrderStatus.Shipped],
+            [OrderStatus.Delivered, OrderStatus.Returned],
+        ];
+
+        var currentGroupIndex = statusOrder.findIndex((group) =>
+            group.includes(this.order.status)
+        );
+
+        return currentGroupIndex >= 0 && currentGroupIndex < statusOrder.length - 1
+            ? statusOrder[currentGroupIndex + 1]
+            : [];
+    }
+
+    public getStatusText(status: OrderStatus): string {
+        const statusMap: Record<OrderStatus, string> = {
+            [OrderStatus.Pending]: 'Pendente',
+            [OrderStatus.Confirmed]: 'Confirmado',
+            [OrderStatus.InPreparation]: 'Em Preparação',
+            [OrderStatus.Shipped]: 'Enviado',
+            [OrderStatus.Returned]: 'Devolvido',
+            [OrderStatus.Delivered]: 'Entregue',
+            [OrderStatus.CancelledByCustomer]: 'Cancelado pelo Cliente',
+            [OrderStatus.CancelledBySystem]: 'Cancelado pelo Sistema',
+        };
+
+        return statusMap[status];
+    }
+
+    public toggleDropdown(): void {
+        this.showDropdown = !this.showDropdown;
     }
 }

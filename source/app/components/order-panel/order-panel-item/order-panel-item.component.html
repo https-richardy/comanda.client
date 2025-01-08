@@ -6,24 +6,29 @@
     </div>
 
     <div class="flex items-center space-x-2">
-        <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Detalhes</button>
-        <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700
-                       flex items-center hover:bg-gray-100
-                       focus:outline-none focus:ring-2
-                       focus:ring-gray-300">
-            Status
-            <span class="material-symbols-outlined ml-2 text-gray-700">
-                {{ icons.ArrowDropDown }}
-            </span>
+        <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+            Detalhes
         </button>
 
-        <button class="px-4 py-2 bg-red-500 text-white rounded-lg
-                       flex items-center hover:bg-red-600
-                       focus:outline-none focus:ring-2
-                       focus:ring-red-300" (click)="cancelOrder()">
-            <span class="material-symbols-outlined">
-                {{ icons.Cancel }}
-            </span>
+        <div class="relative">
+            <button
+                class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 flex items-center hover:bg-gray-100"
+                (click)="toggleDropdown()">
+                Alterar Status
+                <span class="material-symbols-outlined ml-2 text-gray-700">{{ icons.ArrowDropDown }}</span>
+            </button>
+            <ul class="absolute bg-white border border-gray-300 rounded-lg mt-1 shadow-lg w-48 z-10"
+                *ngIf="showDropdown">
+                <li *ngFor="let status of getAllowedStatuses()" (click)="updateStatus(status)"
+                    class="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+                    {{ getStatusText(status) }}
+                </li>
+            </ul>
+        </div>
+
+        <button class="px-4 py-2 bg-red-500 text-white rounded-lg flex items-center hover:bg-red-600"
+            (click)="cancelOrder()">
+            <span class="material-symbols-outlined">{{ icons.Cancel }}</span>
         </button>
     </div>
 </div>
