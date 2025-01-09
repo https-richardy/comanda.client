@@ -5,6 +5,8 @@ import { OrderStatus } from '../../../models/order-status.enum';
 import { CommonModule } from '@angular/common';
 import { StatusBadgeComponent } from '../status-badge/status-badge.component';
 import { Icons } from '../../../common/enums/icons.enum';
+import { DialogService } from '../../../services/dialog.service';
+import { OrderDetailsComponent } from '../../order-details/order-details.component';
 
 @Component({
     selector: 'order-panel-item',
@@ -19,9 +21,11 @@ export class OrderPanelItemComponent {
     public showDropdown = false;
 
     private readonly orderService: OrderService;
+    private readonly dialogService: DialogService;
 
-    public constructor(orderService: OrderService) {
+    public constructor(orderService: OrderService, dialogService: DialogService) {
         this.orderService = orderService;
+        this.dialogService = dialogService;
     }
 
     public updateStatus(newStatus: OrderStatus): void {
@@ -38,6 +42,18 @@ export class OrderPanelItemComponent {
         this.orderService
             .cancelOrder(this.order.id)
             .subscribe()
+    }
+
+    public showOrderDetails(order: FormattedOrder): void {
+        this.orderService
+            .getOrderDetails(order.id)
+            .subscribe((order) => {
+                this.dialogService.open(OrderDetailsComponent, {
+                    closeOnBackdrop: true,
+                    showCloseButton: true,
+                    data: { order: order }
+                });
+            });
     }
 
     // I think this status transition logic should be in the order service, right? 
