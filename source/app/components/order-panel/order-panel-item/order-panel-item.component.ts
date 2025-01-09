@@ -61,7 +61,7 @@ export class OrderPanelItemComponent {
     }
 
     public getStatusText(status: OrderStatus): string {
-        const statusMap: Record<OrderStatus, string> = {
+        var statusMap: Record<OrderStatus, string> = {
             [OrderStatus.Pending]: 'Pendente',
             [OrderStatus.Confirmed]: 'Confirmado',
             [OrderStatus.InPreparation]: 'Em Preparação',
