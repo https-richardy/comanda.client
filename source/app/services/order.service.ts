@@ -7,6 +7,7 @@ import { FormattedOrder } from "../payloads/responses/order-payloads/formatted-o
 import { Response } from "../payloads/responses/response";
 import { Pagination } from "../payloads/responses/pagination";
 import { ChangeOrderStatusRequest } from "../payloads/requests/order-payloads/change-order-status.payload";
+import { FormattedOrderDetails } from "../payloads/responses/order-payloads/formatted-order-details.payload";
 
 @Injectable({ providedIn: "root" })
 export class OrderService {
@@ -43,6 +44,15 @@ export class OrderService {
                     return [ ]
                 })
             )
+    }
+
+    public getOrderDetails(orderId: number): Observable<FormattedOrderDetails> {
+        return this.httpClient.get<Response<FormattedOrderDetails>>(`${this.baseAddress}/${orderId}`)
+            .pipe(
+                map((response) => {
+                    return response.data as FormattedOrderDetails;
+                })
+            );
     }
 
     public cancelOrder(orderId: number): Observable<void> {
