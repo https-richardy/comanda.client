@@ -1,0 +1,24 @@
+<div class="space-y-4">
+    <div *ngFor="let item of items" class="bg-gray-50 p-4 rounded-md">
+        <div class="flex justify-between items-center mb-2">
+            <h4 class="text-lg font-medium text-gray-800">{{ item.product }}</h4>
+            <span class="text-gray-600">Qtd: {{ item.quantity }}</span>
+        </div>
+
+        <div *ngIf="item.unselectedIngredients.length > 0" class="mt-2">
+            <h5 class="text-sm font-medium text-gray-700">Ingredientes Removidos:</h5>
+            <ul class="list-disc list-inside text-sm text-gray-600">
+                <li *ngFor="let ingredient of item.unselectedIngredients">{{ ingredient.name }}</li>
+            </ul>
+        </div>
+
+        <div *ngIf="item.additionals.length > 0" class="mt-2">
+            <h5 class="text-sm font-medium text-gray-700">Adicionais:</h5>
+            <ul class="list-disc list-inside text-sm text-gray-600">
+                <li *ngFor="let additional of item.additionals">
+                    {{ additional.name }} (Qtd: {{ additional.quantity }})
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
