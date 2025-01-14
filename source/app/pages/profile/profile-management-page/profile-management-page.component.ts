@@ -33,14 +33,9 @@ export class ProfileManagementPageComponent {
     }
 
     public handleOnUserInformationChange(): void {
-        this.profileService.updateProfileInformation(this.userInformation).subscribe({
-            next: () => {
-                console.log('Perfil atualizado com sucesso.');
-            },
-            error: (error) => {
-                console.error('Erro ao atualizar o perfil:', error);
-            },
-        });
+        this.profileService
+            .updateProfileInformation(this.userInformation)
+            .subscribe();
     }
 
     private loadProfileData(): void {
