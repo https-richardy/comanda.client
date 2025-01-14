@@ -1,0 +1,111 @@
+<main-layout>
+    <div class="max-w-2xl mx-auto p-6 space-y-8">
+        <h1 class="text-3xl font-bold text-gray-900">Gerenciamento do Perfil</h1>
+
+        <section class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-800">Informações pessoais</h2>
+            <div class="space-y-6">
+                <div class="relative">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nome</label>
+                    <div class="relative mt-1">
+                        <input id="name" type="text" [value]="userInformation.name" [(ngModel)]="userInformation.name"
+                            (ngModelChange)="handleOnUserInformationChange()"
+                            class="block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Digite seu nome" />
+                        <span
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 material-symbols-outlined">
+                            person
+                        </span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <div class="relative mt-1">
+                        <input id="email" type="email" [value]="userInformation.email"
+                            [(ngModel)]="userInformation.email" (ngModelChange)="handleOnUserInformationChange()"
+                            class="block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Digite seu email" />
+                        <span
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 material-symbols-outlined">
+                            email
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-300" />
+
+        <section class="space-y-4 pb-20">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-semibold text-gray-800">Endereços</h2>
+                <button
+                    class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    <span class="material-symbols-outlined mr-2 h-6 w-6">{{ icons.Add }}</span>
+                    Adicionar endereço
+                </button>
+            </div>
+            <div *ngFor="let address of addresses"
+                class="space-y-4 p-4 bg-gray-50 rounded-lg border border-gray-200 shadow">
+                <div>
+                    <label for="street-{{ address.id }}" class="block text-sm font-medium text-gray-700">Rua</label>
+                    <input id="street-{{ address.id }}" type="text" [value]="address.street"
+                        class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Digite o nome da rua" />
+                </div>
+
+                <div class="flex space-x-4">
+                    <div class="flex-1" *ngIf="address.number">
+                        <label for="number-{{ address.id }}"
+                            class="block text-sm font-medium text-gray-700">Número</label>
+                        <input id="number-{{ address.id }}" type="text" [value]="address.number"
+                            class="block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Digite o número" />
+                    </div>
+
+                    <div class="flex-1">
+                        <label for="city-{{ address.id }}"
+                            class="block text-sm font-medium text-gray-700">Cidade</label>
+                        <input id="city-{{ address.id }}" [value]="address.city"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Digite o nome da cidade" />
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+                        <label for="postalCode-{{ address.id }}"
+                            class="block text-sm font-medium text-gray-700">CEP</label>
+                        <input id="postalCode-{{ address.id }}" type="text" [value]="address.postalCode"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Digite o CEP" />
+                    </div>
+
+                    <div class="flex-1" *ngIf="address.complement">
+                        <label for="complement-{{ address.id }}"
+                            class="block text-sm font-medium text-gray-700">Complemento</label>
+                        <input id="complement-{{ address.id }}" type="text" [value]="address.complement"
+                            class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Digite o complemento" />
+                    </div>
+                </div>
+
+                <div *ngIf="address.reference">
+                    <label for="reference-{{ address.id }}"
+                        class="block text-sm font-medium text-gray-700">Referência</label>
+                    <input id="reference-{{ address.id }}" type="text" [value]="address.reference"
+                        class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 pr-10 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Digite uma referência" />
+                </div>
+
+                <button
+                    class="inline-flex items-center px-4 py-2 border border-red-300 shadow-sm text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200">
+                    <span class="material-symbols-outlined mr-2 h-6 w-6">{{ icons.Delete }}</span>
+                    Remover
+                </button>
+            </div>
+        </section>
+
+        <hr class="border-gray-300" />
+    </div>
+</main-layout>
