@@ -16,6 +16,7 @@ import { AccessPolicyResolver } from './resolvers/access-policy.resolver';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { ProfileManagementPageComponent } from './pages/profile/profile-management-page/profile-management-page.component';
 
 export const routes: Routes = [
     {
@@ -46,6 +47,12 @@ export const routes: Routes = [
         path: "profile",
         canActivate: [ CustomerAccessPolicy ],
         component: ProfilePageComponent
+    },
+
+    {
+        path: "profile/manage",
+        canActivate: [ CustomerAccessPolicy ],
+        component: ProfileManagementPageComponent
     },
 
     {
