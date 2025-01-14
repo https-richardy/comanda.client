@@ -6,6 +6,7 @@ import { map, Observable } from 'rxjs';
 
 import { ProfileInformation } from '../payloads/responses/identity-payloads/profileInformation';
 import { Response } from '../payloads/responses/response';
+import { StorageConstants } from '../common/storage-constants';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService implements IProfileService {
@@ -21,4 +22,14 @@ export class ProfileService implements IProfileService {
             .get<Response<ProfileInformation>>(this.baseAddress)
             .pipe(map((response) => response.data as ProfileInformation));
     }
+
+    public updateProfileInformation(data: ProfileInformation): Observable<void> {
+        return this.httpClient
+            .put<void>(`${this.baseAddress}`, data)
+            .pipe(
+                map(() => {
+                    localStorage.setItem(StorageConstants.ProfileInformation, JSON.stringify(data));
+                })
+            );
+    }    
 }
