@@ -30,6 +30,8 @@ export class AddressRegistrationFormComponent {
     public handleSubmit(): void {
         if (this.form.valid) {
             var address: AddressRegistrationRequest = this.form.value;
+            address.postalCode = address.postalCode.replace(/\D/g, "");
+
             this.onValidSubmit.emit(address);
         }
     }
