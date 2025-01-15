@@ -98,7 +98,7 @@
                         placeholder="Digite uma referência" />
                 </div>
 
-                <button
+                <button (click)="onDeleteAddressClick(address)"
                     class="inline-flex items-center px-4 py-2 border border-red-300 shadow-sm text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200">
                     <span class="material-symbols-outlined mr-2 h-6 w-6">{{ icons.Delete }}</span>
                     Remover

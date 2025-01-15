@@ -10,6 +10,7 @@ import { ProfileService } from '../../../services/profile.service';
 import { AddressService } from '../../../services/address.service';
 import { DialogService } from '../../../services/dialog.service';
 import { AddressRegistrationFormComponent } from './forms/address-registration-form/address-registration-form.component';
+import { ConfirmationDialogComponent } from '../../../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
     selector: 'profile-management-page',
@@ -71,6 +72,31 @@ export class ProfileManagementPageComponent {
         });
     }
 
+    public onDeleteAddressClick(address: Address) {
+        var dialogRef = this.dialogService.open(ConfirmationDialogComponent, {
+            showCloseButton: true,
+            closeOnBackdrop: true,
+            data: {
+                title: "Deletar endereço",
+                message: "Tem certeza que deseja executar esta ação?"
+            }
+        });
+
+        dialogRef.instance.onConfirm.subscribe(() => {
+            this.addressService
+                .deleteAddress(address.id)
+                .subscribe(() => {
+                    this.loadProfileData();
+
+                    this.changeDetector.detectChanges();
+                    this.dialogService.close();
+                });
+        });
+
+        dialogRef.instance.onCancel.subscribe(() => {
+            this.dialogService.close();
+        });
+    }
 
     private loadProfileData(): void {
         var storedProfileInformation = localStorage.getItem(StorageConstants.ProfileInformation);
