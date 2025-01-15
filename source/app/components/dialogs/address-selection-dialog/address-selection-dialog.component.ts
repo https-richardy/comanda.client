@@ -4,6 +4,7 @@ import { AddressService } from '../../../services/address.service';
 import { ComponentState } from '../../../common/enums/component-state.enum';
 import { CommonModule } from '@angular/common';
 import { AddressCardComponent } from '../../address-card/address-card.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-address-selection-dialog',
@@ -13,6 +14,7 @@ import { AddressCardComponent } from '../../address-card/address-card.component'
 })
 export class AddressSelectionDialogComponent implements OnInit {
     private readonly addressService: AddressService
+    private readonly routerManager: Router;
 
     public addresses: Address[] = [];
     public currentState = ComponentState.Idle;
@@ -20,8 +22,9 @@ export class AddressSelectionDialogComponent implements OnInit {
 
     @Output() public onSelect = new EventEmitter<Address>();
 
-    public constructor(addressService: AddressService) {
+    public constructor(addressService: AddressService, routerManager: Router) {
         this.addressService = addressService;
+        this.routerManager = routerManager;
     }
 
     public ngOnInit(): void {
@@ -30,7 +33,7 @@ export class AddressSelectionDialogComponent implements OnInit {
     }
 
     public goToAddressRegistration(): void {
-        // TODO: implement address registration
+        this.routerManager.navigate(["/profile/manage"]);
     }
 
     public handleSelection(address: Address): void {
