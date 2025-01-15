@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Icons } from '../../../common/enums/icons.enum';
 import { Address } from '../../../models/address.model';
@@ -21,6 +21,7 @@ export class ProfileManagementPageComponent {
     private readonly profileService: ProfileService;
     private readonly addressService: AddressService;
     private readonly dialogService: DialogService;
+    private readonly changeDetector: ChangeDetectorRef;
 
     public icons = Icons;
     public addresses: Array<Address> = [];
@@ -29,11 +30,13 @@ export class ProfileManagementPageComponent {
     public constructor(
         profileService: ProfileService,
         addressService: AddressService,
-        dialogService: DialogService
+        dialogService: DialogService,
+        changeDetector: ChangeDetectorRef
     ) {
         this.profileService = profileService;
         this.addressService = addressService;
         this.dialogService = dialogService;
+        this.changeDetector = changeDetector;
     }
 
     public ngOnInit(): void {
@@ -57,7 +60,10 @@ export class ProfileManagementPageComponent {
                 .registerNewAddress(address)
                 .subscribe();
 
+            this.loadProfileData();
+
             this.dialogService.close();
+            this.changeDetector.detectChanges();
         });
 
         dialogRef.instance.onCancel.subscribe(() => {
