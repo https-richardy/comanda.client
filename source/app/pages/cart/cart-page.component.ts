@@ -12,6 +12,7 @@ import { AddressSelectionDialogComponent } from '../../components/dialogs/addres
 import { CheckoutService } from '../../services/checkout.service';
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { LoadingModalService } from '../../services/loading.service';
+import { Address } from '../../models/address.model';
 
 @Component({
     selector: 'cart-page',
@@ -74,22 +75,31 @@ export class CartPageComponent implements OnInit {
     }
 
     public openCheckoutDialog() {
-        var checkoutDialog = this.dialogService.open(AddressSelectionDialogComponent);
-        checkoutDialog.instance.onSelect.subscribe((address) => {
-            this.dialogService.close();
-            this.isLoading = true;
-            this.loadingModalService.show("Finalizando o pedido...");
+        const checkoutDialog = this.dialogService.open(AddressSelectionDialogComponent);
 
-            this.checkoutService.getCheckoutSession(address).subscribe((session) => {
-                if (session.url) {
-                    this.loadingModalService.hide();
-                    window.location.href = session.url;
-                }
-            }, () => {
-                this.isLoading = false;
-                this.loadingModalService.hide();
-            })
-        })
+        checkoutDialog.instance.onSelect.subscribe({
+            next: (address: Address) => {
+                this.dialogService.close();
+                this.isLoading = true;
+                this.loadingModalService.show('Finalizando o pedido...');
+    
+                this.checkoutService.getCheckoutSession(address).subscribe({
+                    next: (session) => {
+                        if (session.url) {
+                            this.loadingModalService.hide();
+                            window.location.href = session.url;
+                        }
+                    },
+                    error: () => {
+                        this.isLoading = false;
+                        this.loadingModalService.hide();
+                    },
+                });
+            },
+            complete: () => {
+                this.dialogService.close();
+            },
+        });
     }
 
     private refreshCart() {

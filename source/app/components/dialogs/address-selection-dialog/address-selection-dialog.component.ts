@@ -33,6 +33,7 @@ export class AddressSelectionDialogComponent implements OnInit {
     }
 
     public goToAddressRegistration(): void {
+        this.onSelect.complete();
         this.routerManager.navigate(["/profile/manage"]);
     }
 

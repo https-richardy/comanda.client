@@ -8,9 +8,9 @@
     <div *ngIf="currentState === componentState.Busy" class="text-center">Carregando endereços...</div>
 
     <div *ngIf="currentState != componentState.Busy && addresses.length === 0" class="text-center">
-        <p class="mb-4">Nenhum endereço encontrado. Cadastre um novo endereço.</p>
+        <p class="mb-4 italic text-sm">Nenhum endereço encontrado. Cadastre um novo endereço.</p>
         <button (click)="goToAddressRegistration()"
-            class="bg-primary text-white py-2 px-4 rounded hover:bg-blue-600">
+            class="bg-primary text-white py-2 px-4 rounded">
             Cadastrar Endereço
         </button>
     </div>
