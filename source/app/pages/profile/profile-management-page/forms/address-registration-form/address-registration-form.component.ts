@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Address } from '../../../../../models/address.model';
+import { AddressRegistrationRequest } from '../../../../../payloads/requests/address-payloads/new-address-registration.payload';
 
 @Component({
     selector: 'address-registration-form',
@@ -13,7 +13,7 @@ export class AddressRegistrationFormComponent {
     private readonly formBuilder: FormBuilder;
     public form!: FormGroup;
 
-    public onValidSubmit = new EventEmitter<Address>;
+    public onValidSubmit = new EventEmitter<AddressRegistrationRequest>;
     public onCancel = new EventEmitter<void>;
 
     public constructor(formBuilder: FormBuilder) {
@@ -29,7 +29,7 @@ export class AddressRegistrationFormComponent {
 
     public handleSubmit(): void {
         if (this.form.valid) {
-            var address: Address = this.form.value;
+            var address: AddressRegistrationRequest = this.form.value;
             this.onValidSubmit.emit(address);
         }
     }
