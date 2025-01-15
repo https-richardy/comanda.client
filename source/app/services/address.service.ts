@@ -36,4 +36,12 @@ export class AddressService {
                 })
             )
     }
+
+    public deleteAddress(addressId: number): Observable<void> {
+        return this.httpClient.delete(`${this.baseAddress}/${addressId}`).pipe(
+            map(() => {
+                return void 0;
+            })
+        );
+    }
 }
