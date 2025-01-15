@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Address } from '../models/address.model';
 import { map, Observable } from 'rxjs';
 import { Response } from '../payloads/responses/response';
+import { AddressRegistrationRequest } from '../payloads/requests/address-payloads/new-address-registration.payload';
 
 @Injectable({ providedIn: 'root' })
 export class AddressService {
@@ -12,6 +13,14 @@ export class AddressService {
 
     public constructor(httpClient: HttpClient) {
         this.httpClient = httpClient;
+    }
+
+    public registerNewAddress(address: AddressRegistrationRequest): Observable<void> {
+        return this.httpClient.post<Response<null>>(this.baseAddress, address).pipe(
+            map(() => {
+                return void 0;
+            })
+        )
     }
 
     public getAddresses(): Observable<Address[]> {
