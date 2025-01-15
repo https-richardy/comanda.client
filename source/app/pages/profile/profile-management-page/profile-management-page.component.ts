@@ -8,6 +8,8 @@ import { ProfileInformation } from '../../../payloads/responses/identity-payload
 import { StorageConstants } from '../../../common/storage-constants';
 import { ProfileService } from '../../../services/profile.service';
 import { AddressService } from '../../../services/address.service';
+import { DialogService } from '../../../services/dialog.service';
+import { AddressRegistrationFormComponent } from './forms/address-registration-form/address-registration-form.component';
 
 @Component({
     selector: 'profile-management-page',
@@ -18,14 +20,20 @@ import { AddressService } from '../../../services/address.service';
 export class ProfileManagementPageComponent {
     private readonly profileService: ProfileService;
     private readonly addressService: AddressService;
+    private readonly dialogService: DialogService;
 
     public icons = Icons;
     public addresses: Array<Address> = [];
     public userInformation = {  } as ProfileInformation;
 
-    public constructor(profileService: ProfileService, addressService: AddressService) {
+    public constructor(
+        profileService: ProfileService,
+        addressService: AddressService,
+        dialogService: DialogService
+    ) {
         this.profileService = profileService;
         this.addressService = addressService;
+        this.dialogService = dialogService;
     }
 
     public ngOnInit(): void {
@@ -37,6 +45,26 @@ export class ProfileManagementPageComponent {
             .updateProfileInformation(this.userInformation)
             .subscribe();
     }
+
+    public onRegisterNewAddressClick(): void {
+        var dialogRef = this.dialogService.open(AddressRegistrationFormComponent, {
+            showCloseButton: true,
+            closeOnBackdrop: true
+        });
+
+        dialogRef.instance.onValidSubmit.subscribe((address) => {
+            this.addressService
+                .registerNewAddress(address)
+                .subscribe();
+
+            this.dialogService.close();
+        });
+
+        dialogRef.instance.onCancel.subscribe(() => {
+            this.dialogService.close();
+        });
+    }
+
 
     private loadProfileData(): void {
         var storedProfileInformation = localStorage.getItem(StorageConstants.ProfileInformation);
