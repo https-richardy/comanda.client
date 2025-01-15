@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="handleSubmit()" class="p-4">
+    <div class="mb-4">
+        <label for="postalCode" class="block text-sm font-medium text-gray-700">CEP</label>
+        <input id="postalCode" formControlName="postalCode" type="text" placeholder="Digite o CEP"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ee254b]" />
+        <div *ngIf="form.get('postalCode')?.touched && form.get('postalCode')?.invalid"
+            class="text-red-500 text-sm mt-2">
+            <div *ngIf="form.get('postalCode')?.hasError('required')">O CEP é obrigatório.</div>
+            <div *ngIf="form.get('postalCode')?.hasError('maxlength')">O CEP deve ter no máximo 10 caracteres.</div>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="complement" class="block text-sm font-medium text-gray-700">Complemento (opcional)</label>
+        <input id="complement" formControlName="complement" type="text" placeholder="Digite o complemento"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ee254b]" />
+    </div>
+
+    <div class="mb-4">
+        <label for="reference" class="block text-sm font-medium text-gray-700">Referência (opcional)</label>
+        <input id="reference" formControlName="reference" type="text" placeholder="Digite uma referência"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ee254b]" />
+    </div>
+
+    <div class="mb-4">
+        <label for="number" class="block text-sm font-medium text-gray-700">Número (opcional)</label>
+        <input id="number" formControlName="number" type="text" placeholder="Digite o número"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ee254b]" />
+    </div>
+
+    <div class="flex justify-end space-x-2">
+        <button type="button" (click)="handleCancel()"
+            class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+            Cancelar
+        </button>
+        <button type="submit" [disabled]="form.invalid"
+            class="px-4 py-2 bg-[#ee254b] text-white rounded-md hover:bg-opacity-90 transition-colors">
+            Salvar Endereço
+        </button>
+    </div>
+</form>
